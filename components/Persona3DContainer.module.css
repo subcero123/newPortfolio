@@ -1,0 +1,91 @@
+.container3D {
+  margin: 2rem auto;
+  width: 90%;
+  cursor: pointer;
+}
+
+.face3D {
+  background-color: #e60012;
+  padding: 2rem;
+  transform: rotateX(10deg) rotateY(-10deg) rotateZ(5deg);
+  transition: transform 0.3s ease, height 0.3s ease;
+  box-shadow: -10px 10px 0 rgba(0, 0, 0, 0.8), -20px 20px 0 rgba(0, 0, 0, 0.6), -30px 30px 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border: 8px solid #000000;
+}
+
+.face3D:hover {
+  transform: rotateX(5deg) rotateY(-5deg) rotateZ(2deg);
+}
+
+.leftAlign {
+  margin-top: 8rem;
+  margin-left: 5rem;
+}
+
+.leftAlign .face3D {
+  transform: rotateX(15deg) rotateY(-10deg) rotateZ(1deg);
+  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.8), 20px 20px 0 rgba(0, 0, 0, 0.6), 30px 30px 0 rgba(0, 0, 0, 0.4);
+}
+
+.leftAlign .face3D:hover {
+  transform: rotateX(5deg) rotateY(5deg) rotateZ(-2deg);
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.expandIcon {
+  transition: transform 0.3s ease;
+}
+
+.chevronIcon {
+  filter: drop-shadow(-2px -2px 0 #000)
+         drop-shadow(2px -2px 0 #000)
+         drop-shadow(-2px 2px 0 #000)
+         drop-shadow(2px 2px 0 #000);
+}
+
+.face3D h2 {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    4px 4px 0 rgba(0,0,0,0.8),
+    5px 5px 0 rgba(0,0,0,0.6),
+    6px 6px 0 rgba(0,0,0,0.4);
+  letter-spacing: 2px;
+}
+
+.description {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+
+.description.visible {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.face3D p {
+  color: black;
+  font-size: 1.2rem;
+}
+
+.expanded {
+  height: auto;
+}
+

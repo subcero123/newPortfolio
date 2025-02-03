@@ -1,0 +1,19 @@
+.socialButtonsContainer {
+  margin-top: 10px;
+  translate: -25px -10px;
+  z-index: 2;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 10px solid #e60012; /* Increased from 6px to 10px */
+  transform: rotateY(-30deg) rotateX(5deg) translateZ(-30px);
+}
+
+.socialIcon {
+  color: white;
+}
+

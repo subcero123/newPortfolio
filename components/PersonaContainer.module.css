@@ -1,0 +1,36 @@
+.personaContainer {
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 800px;
+  background-color: #e60012;
+  padding: 16px;
+  clip-path: polygon(0 0, 7% 6%, 100% 0, 91% 100%, 0 100%, 4% 56%);
+  transition: clip-path 0.3s ease;
+}
+
+.personaContainerInner {  
+  background-color: white;
+  padding: 16px;
+  transition: clip-path 0.3s ease;
+  clip-path: polygon(0 0, 7% 6%, 100% 0, 91% 100%, 0 100%, 4% 56%);
+}
+
+.content {
+  background-color: black;
+  padding: 3.5rem 3rem;
+  font-weight: bold;
+  clip-path: polygon(0 0, 7% 6%, 100% 0, 91% 100%, 0 100%, 4% 56%);
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}

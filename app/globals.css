@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-900 text-white;
+}
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
+  --persona5-red: #e60012;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.social-icon {
+  @apply text-white hover:text-primary transition-colors duration-300;
+}
+
+/* Variables para los colores de los iconos sociales */
+:root {
+  --linkedin-color: #0077b5;
+  --github-color: #181717;
+  --email-color: #d44638;
+}
+
+/* Clases para aplicar colores personalizados a los iconos */
+.linkedin-icon {
+  color: var(--linkedin-color);
+}
+.github-icon {
+  color: var(--github-color);
+}
+.email-icon {
+  color: var(--email-color);
+}
+
+/* Estilos para el botón inspirado en Persona 5 */
+.persona5-button {
+  font-size: 1.5rem !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  padding: 0.75rem 2rem !important;
+  background-color: black !important;
+  color: white !important;
+  border: 4px solid var(--persona5-red) !important;
+  box-shadow: 0 0 0 2px black, 0 0 0 6px var(--persona5-red) !important;
+  transition: all 0.3s ease !important;
+}
+
+.persona5-button:hover {
+  background-color: var(--persona5-red) !important;
+  color: black !important;
+  box-shadow: 0 0 0 2px var(--persona5-red), 0 0 0 6px black !important;
+}
+
+/* Efecto de rebote */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.bounce-hover:hover {
+  animation: bounce 0.3s ease 1;
+}
+

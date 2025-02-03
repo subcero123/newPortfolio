@@ -1,0 +1,26 @@
+.personaButtonContainer {
+  perspective: 1000px;
+  z-index: 3;
+}
+
+.personaButton {
+  width: 380px;
+  height: 150px;
+  background-color: black;
+  color: white;
+  border: 12px solid #e60012; /* Increased from 8px to 12px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transform: rotateY(35deg) translateZ(-30px);
+}
+
+.personaButtonText {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: translateZ(20px);
+}
+

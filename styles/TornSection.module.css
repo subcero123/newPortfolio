@@ -1,0 +1,36 @@
+.tornContainer {
+  position: relative;
+  overflow: hidden;
+}
+
+.tornEdge {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  right: 0;
+  height: 120px;
+  clip-path: polygon(
+    0% 100%,
+    5% 90%,
+    15% 95%,
+    25% 85%,
+    35% 95%,
+    45% 80%,
+    55% 90%,
+    65% 85%,
+    75% 95%,
+    85% 85%,
+    95% 95%,
+    100% 85%,
+    100% 100%
+  );
+  background-color: #000;
+  filter: drop-shadow(0 -4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.tornContent {
+  position: relative;
+  z-index: 1;
+  background-color: #000;
+  padding-top: 50px;
+}

@@ -42,7 +42,7 @@ const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
         zIndex: isExpanded ? 10 : "auto", 
         top: isExpanded ? "0%" : "auto", 
         left: isExpanded ? "10%" : "auto", 
-        transform: isExpanded ? "translate(0%, 10%)" : "none", 
+        transform: isExpanded ? "translate(0%, 20%)" : "none", 
         width: "85%", 
         transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)", 
       }}

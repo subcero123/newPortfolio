@@ -10,6 +10,7 @@ import styles from "../styles/RotatedLetter.module.css";
 import p5Styles from "../styles/Persona5Text.module.css";
 import { useEffect, useState } from "react";
 import ProjectsComponent from "@/components/ProjectsComponent/ProjectsComponent";
+import ExperienceComponent from "@/components/ExperienceComponent/ExperienceComponent";
 
 const RotatedLetter: React.FC<{
   letter: string;
@@ -102,7 +103,6 @@ export default function Home() {
   const handleToggleExpand = (id: number) => {
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
-
 
   return (
     <div className="min-h-screen text-white">
@@ -200,7 +200,7 @@ export default function Home() {
           />
           <div
             className="relative flex flex-col justify-center h-full"
-            style={{ top: "-3%" }}
+            style={{ top: "-10%" }}
           >
             <Persona3DContainer
               id={1}
@@ -217,9 +217,8 @@ export default function Home() {
               description="Professional experience and education."
               isExpanded={expandedId === 2}
               onToggleExpand={() => handleToggleExpand(2)}
-              
             >
-              <p>Content for Experience</p>
+              <ExperienceComponent/>
             </Persona3DContainer>
             <Persona3DContainer
               id={3}

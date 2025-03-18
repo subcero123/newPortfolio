@@ -74,13 +74,13 @@ const Header = () => {
         </button>
 
         {isMenuOpen && (
-          <nav className={`absolute top-full left-6 mt-2 rounded-lg shadow-lg w-48`}>
+          <nav className={`absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96`}>
             <ul>
               {['Inicio', 'Proyectos', 'Sobre mí', 'Contacto'].map((item, index) => (
-                <li key={index} className={`text-center ${isMenuOpen ? 'slide-in' : ''}`}>
-                  <div className={`bg-white p-1.5 deformidad-${index + 1}`}>
-                    <div className={`bg-black py-1.5 contenedor-deformidad-${index + 1}`}>
-                      <a href="#" className="text-white hover:text-gray-300">{item}</a>
+                <li key={index} className={`text-center ${isMenuOpen ? `slide-in delay-${index + 1}` : ''}`}>
+                  <div className={`bg-white p-3 deformidad-${index + 1} `}>
+                    <div className={`bg-black py-10 contenedor-deformidad-${index + 1}`}>
+                      <a href="#" className="text-white hover:text-gray-300 letter">{item}</a>
                     </div>
                   </div>
                 </li>

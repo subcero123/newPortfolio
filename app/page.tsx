@@ -90,8 +90,9 @@ export default function Home() {
     <div className="min-h-screen text-white">
       <div
         className="relative bg-cover bg-center  h-screen w-full fixed top-0 left-0 z-0"
-        style={{ backgroundImage: 'url("/hero-bg.png")' }}
+        style={{ backgroundImage: 'url("/new-hero-png.webp")' }}
       >
+        <div className="absolute inset-0 bg-black opacity-70" style={{ zIndex: -1}}></div>
         <Header />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
@@ -165,7 +166,7 @@ export default function Home() {
         </div>
 
         <main
-          className="p-8 bg-cover bg-top w-full  "
+          className="p-8 bg-cover bg-top w-full"
           style={{ backgroundImage: `url(/projects-bg.png)` }}
         >
           <div className="mt-[6rem]" >

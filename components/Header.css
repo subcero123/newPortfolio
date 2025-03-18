@@ -1,5 +1,5 @@
 .slide-in {
-  animation: slideIn 0.1s forwards;
+  animation: slideIn 0.1s backwards;
 }
 
 @keyframes slideIn {
@@ -47,4 +47,36 @@
 
 .contenedor-deformidad-4 {
   clip-path: polygon(5% 0, 94% 0, 100% 62%, 94% 100%, 0 100%);
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.11s;
+}
+.delay-3 {
+  animation-delay: 0.13s;
+}
+.delay-4 {
+  animation-delay: 0.14s;
+}
+
+
+.letter {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin: 0;
+  text-shadow: 
+    3px 3px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    4px 4px 0 rgba(0,0,0,0.8),
+    5px 5px 0 rgba(0,0,0,0.6),
+    6px 6px 0 rgba(0,0,0,0.4);
+  letter-spacing: 2px;
 }

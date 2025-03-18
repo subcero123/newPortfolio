@@ -5,11 +5,11 @@ import { Heart, Spade } from "lucide-react";
 import Header from "../components/Header";
 import PersonaButton from "../components/PersonaButton";
 import SocialButtons from "../components/SocialButtons";
-import PersonaContainer from "../components/PersonaContainer";
 import Persona3DContainer from "../components/Persona3DContainer";
 import styles from "../styles/RotatedLetter.module.css";
 import p5Styles from "../styles/Persona5Text.module.css";
-import tornStyles from "../styles/TornSection.module.css";
+import { useEffect, useState } from "react";
+import ProjectsComponent from "@/components/ProjectsComponent/ProjectsComponent";
 
 const RotatedLetter: React.FC<{
   letter: string;
@@ -83,16 +83,34 @@ const RotatedLetter: React.FC<{
 );
 
 export default function Home() {
+  const [offsetY, setOffsetY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setOffsetY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const nameLetters = "HECTOR UGARTE".split("");
-  const rotations = nameLetters.map(() => Math.random() * 20 - 10); // Generate random rotations between -10 and 10
+  const rotations = nameLetters.map((_, index) => {
+    const baseRotation = 5;
+    return index % 2 === 0 ? baseRotation : -baseRotation;
+  });
 
   return (
     <div className="min-h-screen text-white">
       <div
-        className="relative bg-cover bg-center  h-screen w-full fixed top-0 left-0 z-0"
-        style={{ backgroundImage: 'url("/new-hero-png.webp")' }}
+        className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
+        style={{
+          backgroundImage: 'url("/new-hero-png.webp")',
+          height: "110vh",
+          backgroundPositionY: `${offsetY * 0.5}px`, // Parallax effect
+        }}
       >
-        <div className="absolute inset-0 bg-black opacity-70" style={{ zIndex: -1}}></div>
+        <div
+          className="absolute inset-0 bg-black opacity-70"
+          style={{ zIndex: -1 }}
+        ></div>
         <Header />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
@@ -142,7 +160,7 @@ export default function Home() {
                 className={[
                   index === 0 || index === 4
                     ? p5Styles.redText
-                    : p5Styles.whiteText
+                    : p5Styles.whiteText,
                 ].join(" ")}
               >
                 {letter}
@@ -156,7 +174,7 @@ export default function Home() {
                 className={[
                   index === 0 || index === 4
                     ? p5Styles.redText
-                    : p5Styles.whiteText
+                    : p5Styles.whiteText,
                 ].join(" ")}
               >
                 {letter}
@@ -164,20 +182,29 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        <main
-          className="p-8 bg-cover bg-top w-full"
-          style={{ backgroundImage: `url(/projects-bg.png)` }}
-        >
-          <div className="mt-[6rem]" >
+        <main className="w-full h-screen relative">
+          <img
+            src="/projects-bg.png"
+            alt="Background"
+            className="absolute left-0 w-full h-full"
+            style={{ top: "-2%" }}
+          />
+          <div className="relative flex flex-col justify-center h-full" style={{ top: "-3%" }}>
             <Persona3DContainer
-              title="MIS PROYECTOS"
-              description="Aquí encontrarás una selección de mis mejores trabajos y proyectos personales. Cada proyecto demuestra mi habilidad para crear soluciones innovadoras y eficientes."
-            />
+              title="My Projects"
+              description="I have worked on a variety of projects. Here are some of my most recent projects."
+            >
+              <ProjectsComponent />
+            </Persona3DContainer>
             <Persona3DContainer
-              title="CONTACTO"
-              description="¿Interesado en trabajar juntos? ¡Contáctame! Estoy siempre abierto a nuevas oportunidades y colaboraciones emocionantes."
+              title="Experience"
+              description="Professional experience and education."
               isLeft={true}
+            />
+            <div className="p-5"></div>
+            <Persona3DContainer
+              title="About Me"
+              description="I am a Fullstack Developer with a passion for creating beautiful and functional applications."
             />
           </div>
         </main>

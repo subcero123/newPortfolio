@@ -9,7 +9,8 @@ interface Persona3DContainerProps {
   title: string
   description: string
   isLeft?: boolean
-  className?: string
+  className?: string;
+  children?: React.ReactNode;
 }
 
 const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
@@ -17,6 +18,7 @@ const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
   description,
   isLeft = false,
   className = "",
+  children,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -39,6 +41,7 @@ const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
         </div>
         <div className={`${styles.description} ${isExpanded ? styles.visible : ""}`}>
           <p>{description}</p>
+          {children && <div className={styles.childrenContainer}>{children}</div>}
         </div>
       </div>
     </div>

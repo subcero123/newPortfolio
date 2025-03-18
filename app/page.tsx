@@ -97,13 +97,22 @@ export default function Home() {
     return index % 2 === 0 ? baseRotation : -baseRotation;
   });
 
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const handleToggleExpand = (id: number) => {
+    setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
+  };
+
+
   return (
     <div className="min-h-screen text-white">
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
           backgroundImage: 'url("/new-hero-png.webp")',
-          height: "110vh",
+          backgroundSize: "125%", // Escala la imagen para que parezca más alejada
+          backgroundPosition: "center", // Centra la imagen
+          backgroundRepeat: "no-repeat", // Evita que la imagen se repita
           backgroundPositionY: `${offsetY * 0.5}px`, // Parallax effect
         }}
       >
@@ -189,23 +198,38 @@ export default function Home() {
             className="absolute left-0 w-full h-full"
             style={{ top: "-2%" }}
           />
-          <div className="relative flex flex-col justify-center h-full" style={{ top: "-3%" }}>
+          <div
+            className="relative flex flex-col justify-center h-full"
+            style={{ top: "-3%" }}
+          >
             <Persona3DContainer
+              id={1}
               title="My Projects"
               description="I have worked on a variety of projects. Here are some of my most recent projects."
+              isExpanded={expandedId === 1}
+              onToggleExpand={() => handleToggleExpand(1)}
             >
               <ProjectsComponent />
             </Persona3DContainer>
             <Persona3DContainer
+              id={2}
               title="Experience"
               description="Professional experience and education."
-              isLeft={true}
-            />
-            <div className="p-5"></div>
+              isExpanded={expandedId === 2}
+              onToggleExpand={() => handleToggleExpand(2)}
+              
+            >
+              <p>Content for Experience</p>
+            </Persona3DContainer>
             <Persona3DContainer
+              id={3}
               title="About Me"
               description="I am a Fullstack Developer with a passion for creating beautiful and functional applications."
-            />
+              isExpanded={expandedId === 3}
+              onToggleExpand={() => handleToggleExpand(3)}
+            >
+              <p>Content for About Me</p>
+            </Persona3DContainer>
           </div>
         </main>
       </div>

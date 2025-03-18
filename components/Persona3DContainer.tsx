@@ -13,40 +13,71 @@ interface Persona3DContainerProps {
   children?: React.ReactNode;
 }
 
+interface Persona3DContainerProps {
+  id: number;
+  title: string;
+  description: string;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+  children?: React.ReactNode;
+  isLeft?: boolean;
+  className?: string;
+}
+
 const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
   title,
   description,
+  isExpanded,
+  onToggleExpand,
+  children,
   isLeft = false,
   className = "",
-  children,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded)
-  }
-
   return (
-    <div className={`${styles.container3D} ${isLeft ? styles.leftAlign : ""} ${className}`} onClick={toggleExpand}>
+    <div
+      className={`${styles.container3D} ${isLeft ? styles.leftAlign : ""} ${className}`}
+      style={{
+        display: isExpanded || !isExpanded ? "block" : "none",
+        position: isExpanded ? "absolute" : "relative", 
+        zIndex: isExpanded ? 10 : "auto", 
+        top: isExpanded ? "0%" : "auto", 
+        left: isExpanded ? "10%" : "auto", 
+        transform: isExpanded ? "translate(0%, 10%)" : "none", 
+        width: "85%", 
+        transition: "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)", 
+      }}
+      onClick={onToggleExpand}
+    >
       <div className={`${styles.face3D} ${isExpanded ? styles.expanded : ""}`}>
         <div className={styles.titleContainer}>
           <h2>{title}</h2>
           <div className={styles.expandIcon}>
             {isExpanded ? (
-              <ChevronUp color="white" strokeWidth={4} size={36} className={styles.chevronIcon} />
+              <ChevronUp
+                color="white"
+                strokeWidth={4}
+                size={36}
+                className={styles.chevronIcon}
+              />
             ) : (
-              <ChevronDown color="white" strokeWidth={4} size={36} className={styles.chevronIcon} />
+              <ChevronDown
+                color="white"
+                strokeWidth={4}
+                size={36}
+                className={styles.chevronIcon}
+              />
             )}
           </div>
         </div>
-        <div className={`${styles.description} ${isExpanded ? styles.visible : ""}`}>
-          <p>{description}</p>
-          {children && <div className={styles.childrenContainer}>{children}</div>}
-        </div>
+        {isExpanded && (
+          <div>
+            <p>{description}</p>
+            {children && <div className={styles.childrenContainer}>{children}</div>}
+          </div>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Persona3DContainer
-
+export default Persona3DContainer;

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import './Header.css';
+import { useState, useEffect, useRef } from "react";
+import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,6 +15,29 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
+  };
+
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null); // Índice del elemento en hover
+  const [hoverPosition, setHoverPosition] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  } | null>(null); // Posición del hover
+  const navRef = useRef<HTMLUListElement>(null); // Referencia al contenedor principal
+
+  const menuItems = ["Home", "My Projects", "Experience", "About Me"];
+
+  const handleMouseEnter = (
+    index: number,
+    event: React.MouseEvent<HTMLLIElement>
+  ) => {
+    const rect = event.currentTarget.getBoundingClientRect(); // Obtiene la posición del elemento
+    setHoverIndex(index);
+    setHoverPosition({
+      top: rect.top - (navRef.current?.getBoundingClientRect().top || 0), // Calcula la posición relativa al contenedor
+      left: rect.left - (navRef.current?.getBoundingClientRect().left || 0),
+      width: rect.width,
+    });
   };
 
   return (
@@ -41,7 +64,6 @@ const Header = () => {
             <>
               {/* Icono X desde close.svg */}
               <img width={40} src="close.svg" alt="Close" />
-              
             </>
           ) : (
             <>
@@ -74,15 +96,52 @@ const Header = () => {
         </button>
 
         {isMenuOpen && (
-          <nav className={`absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96`}>
-            <ul>
-              {['Inicio', 'Proyectos', 'Sobre mí', 'Contacto'].map((item, index) => (
-                <li key={index} className={`text-center ${isMenuOpen ? `slide-in delay-${index + 1}` : ''}`}>
-                  <div className={`bg-white p-3 deformidad-${index + 1} `}>
-                    <div className={`bg-black py-10 contenedor-deformidad-${index + 1}`}>
-                      <a href="#" className="text-white hover:text-gray-300 letter">{item}</a>
+          <nav className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96">
+            <ul ref={navRef} className="relative">
+              {/* Contenedor red-hover */}
+              {hoverPosition && (
+                <div
+                  className="red-hover rotate-infinite"
+                  style={{
+                    position: "absolute",
+                    zIndex: 3, // Se pone detrás del texto pero encima de otros contenedores
+                    backgroundColor: "red",
+                    width: "80%",
+                    minHeight: "1.8rem",
+                    top: hoverPosition.top + 20,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    transition: "all 0.3s ease",
+                  }}
+                ></div>
+              )}
+              {menuItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={`text-center ${
+                    isMenuOpen ? `slide-in delay-${index + 1}` : ""
+                  }`}
+                  onMouseEnter={(e) => handleMouseEnter(index, e)}
+                  onMouseLeave={() => setHoverIndex(null)}
+                  style={{ position: "relative", zIndex: 2 }} // Mayor que .red-hover
+                >
+                  <a
+                    href={`#${item.replace(/\s+/g, "-").toLowerCase()}`}
+                    className="block"
+                  >
+                    <div
+                      className={`bg-white p-3 deformidad-${index + 1}`}
+                      style={{ position: "relative"}} // Encima de .red-hover
+                    >
+                      <div
+                        className={`bg-black py-6 contenedor-deformidad-${
+                          index + 1
+                        }`}
+                        style={{ position: "relative"}} // Texto encima de todo
+                      >
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </li>
               ))}
             </ul>

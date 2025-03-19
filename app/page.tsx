@@ -214,7 +214,7 @@ export default function Home() {
             <Persona3DContainer
               id={2}
               title="Experience"
-              description="Professional experience and education."
+              description=""
               isExpanded={expandedId === 2}
               onToggleExpand={() => handleToggleExpand(2)}
             >
@@ -232,6 +232,11 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <footer>
+        <div className="bg-black text-white text-center py-4">
+          <p>&copy; 2025 Hector Yoav Ugarte Ramirez</p>
+        </div>
+      </footer>
     </div>
   );
 }

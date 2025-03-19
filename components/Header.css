@@ -66,8 +66,7 @@
 .letter {
   color: white;
   font-weight: bold;
-  text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 1rem;
   margin: 0;
   text-shadow: 
     3px 3px 0 #000,
@@ -79,4 +78,27 @@
     5px 5px 0 rgba(0,0,0,0.6),
     6px 6px 0 rgba(0,0,0,0.4);
   letter-spacing: 2px;
+}
+
+
+.rotate-infinite {
+  animation: dance 2s ease-in-out infinite;
+}
+
+@keyframes dance {
+  0% {
+    transform: rotateZ(0deg) translateY(0);
+  }
+  25% {
+    transform: rotateZ(5deg) translateY(-5px);
+  }
+  50% {
+    transform: rotateZ(-5deg) translateY(5px);
+  }
+  75% {
+    transform: rotateZ(5deg) translateY(-3px);
+  }
+  100% {
+    transform: rotateZ(0deg) translateY(0);
+  }
 }

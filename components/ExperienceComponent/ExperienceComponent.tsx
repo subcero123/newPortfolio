@@ -30,7 +30,7 @@ const experiences: Experience[] = [
 
 const ExperienceComponent: React.FC = () => {
     return (
-        <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+        <div style={{ padding: '20px', fontFamily: 'p5hatty' }}>
             {experiences.map((experience, index) => (
                 <div
                     key={index}

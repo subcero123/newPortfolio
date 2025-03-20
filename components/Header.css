@@ -82,23 +82,21 @@
 
 
 .rotate-infinite {
-  animation: dance 2s ease-in-out infinite;
+  animation: dance 1.2s ease-in-out infinite;
 }
 
 @keyframes dance {
   0% {
-    transform: rotateZ(0deg) translateY(0);
+    transform: rotateZ(0deg) rotateY(0deg) translateY(0);
   }
   25% {
-    transform: rotateZ(5deg) translateY(-5px);
-  }
-  50% {
-    transform: rotateZ(-5deg) translateY(5px);
+    transform: rotateZ(2deg) rotateX(40deg)  translateY(0);
   }
   75% {
-    transform: rotateZ(5deg) translateY(-3px);
+    transform: rotateZ(-2deg) rotateX(-40deg) translateY(0);
   }
+
   100% {
-    transform: rotateZ(0deg) translateY(0);
+    transform: rotateZ(0deg) rotateY(0deg) translateY(0);
   }
 }

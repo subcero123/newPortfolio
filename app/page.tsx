@@ -106,6 +106,20 @@ export default function Home() {
 
   return (
     <div className="min-h-screen text-white">
+                        <style>
+        {`
+          @font-face {
+            font-family: 'p5hatty';
+            src: url('/fonts/p5hatty.ttf') format('truetype');
+          }
+
+          @font-face {
+          font-family: 'Persona5MenuFont';
+          src: url('/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
+          }
+
+        `}
+      </style>
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{

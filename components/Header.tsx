@@ -96,25 +96,44 @@ const Header = () => {
         </button>
 
         {isMenuOpen && (
-          <nav className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96">
+          <nav className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96" style={{fontFamily: 'p5hatty', fontSize: '1.5rem'}}>
             <ul ref={navRef} className="relative">
-              {/* Contenedor red-hover */}
               {hoverPosition && (
-                <div
-                  className="red-hover rotate-infinite"
-                  style={{
-                    position: "absolute",
-                    zIndex: 3, // Se pone detrás del texto pero encima de otros contenedores
-                    backgroundColor: "red",
-                    width: "80%",
-                    minHeight: "1.8rem",
-                    top: hoverPosition.top + 20,
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    transition: "all 0.3s ease",
-                  }}
-                ></div>
+                <div className="slide-in delay-4">
+                  <div
+                    className="red-hover rotate-infinite"
+                    style={{
+                      position: "absolute",
+                      zIndex: 2,
+                      backgroundColor: "red",
+                      width: "80%",
+                      minHeight: "1.7rem",
+                      top: hoverPosition.top + 15,
+                      left: "10%",
+                      transition: "all 0.3s ease",
+                      pointerEvents: "none",
+                    }}
+                  ></div>
+                </div>
               )}
+              {menuItems.map((item, index) => (
+                <div
+                  className="slide-in delay-4"
+                  style={{
+                    zIndex: 10,
+                    position: "absolute",
+                    left: "40%",
+                    top: index * 50 + 20,
+                    textAlign: "center",
+                    width: "80%",
+                    transform: "translateX(-35%)",
+                    fontWeight: "bold",
+                    pointerEvents: "none",
+                  }}
+                >
+                  {item}
+                </div>
+              ))}
               {menuItems.map((item, index) => (
                 <li
                   key={index}
@@ -122,8 +141,7 @@ const Header = () => {
                     isMenuOpen ? `slide-in delay-${index + 1}` : ""
                   }`}
                   onMouseEnter={(e) => handleMouseEnter(index, e)}
-                  onMouseLeave={() => setHoverIndex(null)}
-                  style={{ position: "relative", zIndex: 2 }} // Mayor que .red-hover
+                  style={{ position: "relative", zIndex: 1 }}
                 >
                   <a
                     href={`#${item.replace(/\s+/g, "-").toLowerCase()}`}
@@ -131,15 +149,14 @@ const Header = () => {
                   >
                     <div
                       className={`bg-white p-3 deformidad-${index + 1}`}
-                      style={{ position: "relative"}} // Encima de .red-hover
+                      style={{ position: "relative", zIndex: 1 }}
                     >
                       <div
                         className={`bg-black py-6 contenedor-deformidad-${
                           index + 1
                         }`}
-                        style={{ position: "relative"}} // Texto encima de todo
-                      >
-                      </div>
+                        style={{ position: "relative", zIndex: 1 }}
+                      ></div>
                     </div>
                   </a>
                 </li>

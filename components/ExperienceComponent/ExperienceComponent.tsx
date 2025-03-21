@@ -108,7 +108,7 @@ const ExperienceComponent: React.FC = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "5px",
+              gap: "1rem",
               marginTop: "1rem",
             }}
           >
@@ -128,6 +128,8 @@ const ExperienceComponent: React.FC = () => {
                     color: "black",
                     fontWeight: "bold",
                     textAlign: "center",
+                    fontSize: "1.2rem",
+                    letterSpacing: "0.14rem",
                   }}
                 >
                   {tech}

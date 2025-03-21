@@ -123,7 +123,7 @@ export default function Home() {
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
-          backgroundImage: 'url("/new-hero-png.webp")',
+          backgroundImage: 'url("/hero-bg.png")',
           backgroundSize: "125%", // Escala la imagen para que parezca más alejada
           backgroundPosition: "center", // Centra la imagen
           backgroundRepeat: "no-repeat", // Evita que la imagen se repita
@@ -131,7 +131,7 @@ export default function Home() {
         }}
       >
         <div
-          className="absolute inset-0 bg-black opacity-70"
+          className="absolute inset-0 bg-black opacity-50"
           style={{ zIndex: -1 }}
         ></div>
         <Header />
@@ -175,7 +175,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={p5Styles.persona5Text}>
+        <div className={p5Styles.persona5Text} style={{fontFamily: 'p5hatty', letterSpacing: '0.3rem'}}>
           <div>
             {"FULLSTACK".split("").map((letter, index) => (
               <span
@@ -195,7 +195,7 @@ export default function Home() {
               <span
                 key={index}
                 className={[
-                  index === 0 || index === 4
+                  index === 0 || index === 6
                     ? p5Styles.redText
                     : p5Styles.whiteText,
                 ].join(" ")}

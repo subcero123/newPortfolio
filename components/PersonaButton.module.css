@@ -4,6 +4,7 @@
 }
 
 .personaButton {
+  font-family: 'p5hatty';
   width: 380px;
   height: 150px;
   background-color: black;
@@ -17,9 +18,8 @@
 }
 
 .personaButtonText {
-  font-size: 3rem;
+  font-size: 3.4rem;
   font-weight: 900;
-  text-transform: uppercase;
   letter-spacing: 0.1em;
   transform: translateZ(20px);
 }

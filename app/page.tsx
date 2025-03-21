@@ -237,11 +237,10 @@ export default function Home() {
             <Persona3DContainer
               id={3}
               title="About Me"
-              description="I am a Fullstack Developer with a passion for creating beautiful and functional applications."
+              description="I am a fullstack developer with experience in building scalable and dynamic platforms, specializing in MEAN Stack, Vue.js, Laravel, and AWS. I have worked with international startups, freelance contracts, and research projects in Japan and Mexico, developing innovative solutions for industries such as automotive, industrial, and pharmaceutical."
               isExpanded={expandedId === 3}
               onToggleExpand={() => handleToggleExpand(3)}
             >
-              <p>Content for About Me</p>
             </Persona3DContainer>
           </div>
         </main>

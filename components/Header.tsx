@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import "./Header.css";
 
-const Header = () => {
+interface HeaderProps {
+  onMenuClick: (id: number | null) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -25,7 +29,12 @@ const Header = () => {
   } | null>(null); // Posición del hover
   const navRef = useRef<HTMLUListElement>(null); // Referencia al contenedor principal
 
-  const menuItems = ["Home", "My Projects", "Experience", "About Me"];
+  const menuItems = [
+    { id: 0, label: "Home" },
+    { id: 1, label: "My Projects" },
+    { id: 2, label: "Experience" },
+    { id: 3, label: "About Me" },
+  ];
 
   const handleMouseEnter = (
     index: number,
@@ -96,7 +105,10 @@ const Header = () => {
         </button>
 
         {isMenuOpen && (
-          <nav className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96" style={{fontFamily: 'p5hatty', fontSize: '1.5rem'}}>
+          <nav
+            className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96"
+            style={{ fontFamily: "p5hatty", fontSize: "1.5rem" }}
+          >
             <ul ref={navRef} className="relative">
               {hoverPosition && (
                 <div className="slide-in delay-4">
@@ -131,7 +143,7 @@ const Header = () => {
                     pointerEvents: "none",
                   }}
                 >
-                  {item}
+                  {item.label}
                 </div>
               ))}
               {menuItems.map((item, index) => (
@@ -144,8 +156,16 @@ const Header = () => {
                   style={{ position: "relative", zIndex: 1 }}
                 >
                   <a
-                    href={`#${item.replace(/\s+/g, "-").toLowerCase()}`}
+                    href={
+                      index === 0
+                        ? "#"
+                        : `#${item.label.replace(/\s+/g, "-").toLowerCase()}`
+                    } // Primer elemento redirige a "/"
                     className="block"
+                    onClick={() => {
+                      onMenuClick(item.id === 0 ? null : item.id); // Llama a la función para expandir el contenedor
+                      toggleMenu(); // Cierra el menú
+                    }}
                   >
                     <div
                       className={`bg-white p-3 deformidad-${index + 1}`}

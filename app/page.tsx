@@ -100,26 +100,12 @@ export default function Home() {
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
-  const handleToggleExpand = (id: number) => {
+  const handleToggleExpand = (id: number | null) => {
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
 
   return (
     <div className="min-h-screen text-white">
-                        <style>
-        {`
-          @font-face {
-            font-family: 'p5hatty';
-            src: url('/fonts/p5hatty.ttf') format('truetype');
-          }
-
-          @font-face {
-          font-family: 'Persona5MenuFont';
-          src: url('/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
-          }
-
-        `}
-      </style>
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
@@ -134,7 +120,7 @@ export default function Home() {
           className="absolute inset-0 bg-black opacity-50"
           style={{ zIndex: -1 }}
         ></div>
-        <Header />
+        <Header onMenuClick={handleToggleExpand} />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
             src="/header-bg.png"
@@ -174,8 +160,10 @@ export default function Home() {
             <SocialButtons />
           </div>
         </div>
-
-        <div className={p5Styles.persona5Text} style={{fontFamily: 'p5hatty', letterSpacing: '0.3rem'}}>
+        <div
+          className={p5Styles.persona5Text}
+          style={{ fontFamily: "p5hatty", letterSpacing: "0.3rem" }}
+        >
           <div>
             {"FULLSTACK".split("").map((letter, index) => (
               <span
@@ -232,7 +220,7 @@ export default function Home() {
               isExpanded={expandedId === 2}
               onToggleExpand={() => handleToggleExpand(2)}
             >
-              <ExperienceComponent/>
+              <ExperienceComponent />
             </Persona3DContainer>
             <Persona3DContainer
               id={3}
@@ -240,8 +228,7 @@ export default function Home() {
               description="I am a fullstack developer with experience in building scalable and dynamic platforms, specializing in MEAN Stack, Vue.js, Laravel, and AWS. I have worked with international startups, freelance contracts, and research projects in Japan and Mexico, developing innovative solutions for industries such as automotive, industrial, and pharmaceutical."
               isExpanded={expandedId === 3}
               onToggleExpand={() => handleToggleExpand(3)}
-            >
-            </Persona3DContainer>
+            ></Persona3DContainer>
           </div>
         </main>
       </div>

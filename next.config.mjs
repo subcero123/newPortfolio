@@ -11,8 +11,6 @@ const nextConfig = {
   images: {
     unoptimized: true, // Evita la optimización de imágenes para exportación
   },
-  basePath: "/my-portfolio", // Reemplaza con el nombre de tu repo en GitHub
-  assetPrefix: "/my-portfolio/",
   eslint: {
     ignoreDuringBuilds: true,
   },

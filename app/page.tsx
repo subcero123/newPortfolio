@@ -132,11 +132,9 @@ export default function Home() {
         ></div>
         <Header onMenuClick={handleToggleExpand} />
         <div className="w-full h-[10vh] relative overflow-hidden">
-          <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/header-bg.png`}
-            alt="Imagen de encabezado"
-            layout="fill"
-          />
+          <img
+            src={'/my-portfolio/header-bg.png'}
+            alt="Imagen de encabezado"/>
         </div>
         <div className="relative h-[72vh]">
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">

@@ -1,6 +1,6 @@
 .persona5Text {
   position: absolute;
-  top: 35%;
+  top: 30%;
   right: 5%;
   font-size: 4rem;
   font-weight: bold;
@@ -12,6 +12,7 @@
   align-items: flex-end;
   gap: 0.5rem;
   transform: rotate(-5deg);
+  letter-spacing:  "0.3rem";
 }
 
 .persona5Text span {
@@ -40,4 +41,20 @@
 
 .whiteText {
   color: white;
+}
+
+/* Estilo para tablet */
+@media (max-width: 768px) {
+  .persona5Text {
+    top: 30%;
+    right: 5%;
+    font-size: 3rem;
+  }
+}
+
+/* Estilo para mobile */
+@media (max-width: 425px) {
+  .persona5Text {
+    display: none;
+  }
 }

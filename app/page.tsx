@@ -92,7 +92,8 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const nameLetters = "HECTOR UGARTE".split("");
+  const isMobile = window.innerWidth < 768;
+  const nameLetters = isMobile ? "YOAV".split("") : "HECTOR UGARTE".split("");
   const rotations = nameLetters.map((_, index) => {
     const baseRotation = 5;
     return index % 2 === 0 ? baseRotation : -baseRotation;
@@ -131,13 +132,9 @@ export default function Home() {
         <div className="relative h-[72vh]">
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
             <h1
-              className="mb-2 tracking-widest"
+              className="mb-2 tracking-widest persona5-text"
               style={{
-                fontSize: "4.5rem",
                 fontWeight: "1000",
-                letterSpacing: "0.08em",
-                lineHeight: "1.2",
-                position: "relative",
               }}
             >
               {nameLetters.map((letter, index) => (
@@ -155,14 +152,14 @@ export default function Home() {
             </h1>
             <PersonaButton
               text="SCHEDULE"
-              onClick={() => console.log("Button clicked")}
+              onClick={() => open("https://calendly.com/hector_ugarter/30min")}
             />
             <SocialButtons />
           </div>
         </div>
         <div
           className={p5Styles.persona5Text}
-          style={{ fontFamily: "p5hatty", letterSpacing: "0.3rem" }}
+          style={{ fontFamily: "p5hatty" }}
         >
           <div>
             {"FULLSTACK".split("").map((letter, index) => (

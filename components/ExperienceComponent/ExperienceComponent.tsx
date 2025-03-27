@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./ExperienceComponent.module.css";
 
 interface Experience {
   title: string;
@@ -50,97 +51,35 @@ const experiences: Experience[] = [
 
 const ExperienceComponent: React.FC = () => {
   return (
-    <div style={{ padding: "20px", fontFamily: "p5hatty" }}>
+    <div className={styles.container}>
       {experiences.map((experience, index) => (
-        <div
-          key={index}
-          style={{
-            marginBottom: "20px",
-            padding: "15px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+        <div key={index} className={styles.experienceCard}>
+          <div className={styles.header}>
             <div>
-              <h3
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "bold",
-                  margin: 0,
-                  color: "white",
-                }}
-              >
+              <h3 className={styles.title}>
                 {experience.title}{" "}
-                <span
-                  style={{
-                    marginLeft: "5px",
-                    fontSize: "1.5rem",
-                    color: "white",
-                  }}
-                >
+                <span className={styles.company}>
                   {experience.company}, {experience.location}
                 </span>
               </h3>
             </div>
             <div>
-              <p
-                style={{
-                  fontSize: "1.5rem",
-                  fontWeight: "bold",
-                  color: "white",
-                  margin: 0,
-                }}
-              >
-                {experience.period}
-              </p>
+              <p className={styles.period}>{experience.period}</p>
             </div>
           </div>
-          <p style={{ marginTop: "1rem", color: "black", fontSize: "1.5rem" }}>
-            {experience.description}
-          </p>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-              marginTop: "1rem",
-            }}
-          >
-            {experience.technologies.map((tech, techIndex) => (
-              <div
-                style={{
-                  padding: "2px 1rem",
-                  border: "5px solid black",
-                  width: "fit-content",
-                  textAlign: "center",
-                  boxShadow: "5px 5px 2px 0px rgba(0,0,0,0.75)",
-                }}
-              >
-                <span
-                  key={techIndex}
-                  style={{
-                    color: "black",
-                    fontWeight: "bold",
-                    textAlign: "center",
-                    fontSize: "1.2rem",
-                    letterSpacing: "0.14rem",
-                  }}
-                >
-                  {tech}
-                </span>
-              </div>
-            ))}
-          </div>
+          <p className={styles.description}>{experience.description}</p>
+          {experience.technologies.length > 0 && (
+            <div className={styles.technologies}>
+              {experience.technologies.map((technology, index) => (
+                <div key={index} className={styles.technology}>
+                  {technology}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 };
-
 export default ExperienceComponent;

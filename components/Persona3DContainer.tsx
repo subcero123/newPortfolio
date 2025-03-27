@@ -71,7 +71,7 @@ const Persona3DContainer: React.FC<Persona3DContainerProps> = ({
         </div>
         {isExpanded && (
           <div>
-            <p style={{fontFamily: 'p5hatty', fontSize: '1.9rem'}} >{description}</p>
+            <p className={styles.description} style={{fontFamily: 'p5hatty'}} >{description}</p>
             {children && <div className={styles.childrenContainer}>{children}</div>}
           </div>
         )}

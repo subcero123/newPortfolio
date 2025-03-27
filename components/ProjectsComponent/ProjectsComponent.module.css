@@ -77,3 +77,22 @@
     font-size: 0.9rem;
     text-align: center;
 }
+
+/* Estilos tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gridContainer {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Estilos móvil */
+@media (max-width: 767px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .projectCard {
+        max-width: 100%;
+        border: none;
+    }
+}

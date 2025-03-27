@@ -13,20 +13,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <style>
-        {`
-          @font-face {
-            font-family: 'p5hatty';
-            src: url('/fonts/p5hatty.ttf') format('truetype');
-          }
-
-          @font-face {
-          font-family: 'Persona5MenuFont';
-          src: url('/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
-          }
-
-        `}
-      </style>
       <body>{children}</body>
     </html>
   );

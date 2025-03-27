@@ -5,8 +5,8 @@
 
 .personaButton {
   font-family: 'p5hatty';
-  width: 380px;
-  height: 150px;
+  width: 360px;
+  height: 130px;
   background-color: black;
   color: white;
   border: 12px solid #e60012; /* Increased from 8px to 12px */
@@ -22,5 +22,33 @@
   font-weight: 900;
   letter-spacing: 0.1em;
   transform: translateZ(20px);
+}
+
+
+
+@media (max-width: 768px) { /* Tablet */
+  .personaButton {
+    width: 300px;
+    height: 110px;
+    border: 10px solid #e60012;
+    transform: rotateY(25deg) translateZ(-20px);
+  }
+
+  .personaButtonText {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) { /* Mobile */
+  .personaButton {
+    width: 250px;
+    height: 90px;
+    border: 8px solid #e60012;
+    transform: rotateY(15deg) translateZ(-10px);
+  }
+
+  .personaButtonText {
+    font-size: 2rem;
+  }
 }
 

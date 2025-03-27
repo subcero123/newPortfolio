@@ -68,16 +68,8 @@
   letter-spacing: 2px;
 }
 
-.description {
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  overflow: hidden;
-}
-
-.description.visible {
-  max-height: 1000px;
-  opacity: 1;
+.description{
+  font-size: 2rem !important;
 }
 
 .face3D p {
@@ -104,3 +96,47 @@
   background: transparent;
 }
 
+/* Estilos para tablet */
+@media (max-width: 768px) {
+
+
+  .face3D h2 {
+    font-size: 1.5rem;
+  }
+
+  .face3D p {
+    font-size: 1rem;
+  }
+
+  .expanded {
+    max-height: 90vh;
+  }
+
+  .description {
+    font-size: 1.7rem !important;
+  }
+}
+
+
+/* Estilos para mobile */
+@media (max-width: 425px) {
+  .face3D {
+    padding: 1rem;
+  }
+
+  .face3D h2 {
+    font-size: 1.2rem;
+  }
+
+  .face3D p {
+    font-size: 1rem;
+  }
+
+  .expanded {
+    max-height: 70vh;
+  }
+
+  .description {
+    font-size: 1.3rem !important;
+  }
+}

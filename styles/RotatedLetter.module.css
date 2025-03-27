@@ -2,8 +2,8 @@
   perspective: 1000px;
   display: inline-block;
   margin: 0 0.05em;
-  width: 1.2em;
-  height: 1.5em;
+  width: 80px;
+  height: 90px;
   vertical-align: middle;
 }
 
@@ -88,4 +88,76 @@
 
 .letterContainer:hover .icon {
   filter: drop-shadow(0 0 5px rgba(230, 0, 18, 0.7));
+}
+
+/* Estilos para tablet */
+@media (max-width: 768px) {
+  .letterContainer {
+    width: 51px;
+    height: 70px;
+  }
+
+  .letterInner {
+    transition: transform 0.5s;
+  }
+
+  .letterFront,
+  .letterBack {
+    border: 4px solid white;
+  }
+
+  .hContainer {
+    width: 70%;
+    height: 70%;
+  }
+
+  .heartIcon {
+    font-size: 0.7em;
+  }
+
+  .letter,
+  .icon {
+    transform: scale(1) skew(-2deg);
+  }
+
+  .letterContainer:hover .letter,
+  .letterContainer:hover .icon {
+    transform: scale(1.1) skew(-4deg);
+  }
+}
+
+/* Estilos para móvil */
+@media (max-width: 480px) {
+  .letterContainer {
+    width: 65px;
+    height: 70px;
+  }
+
+  .letterInner {
+    transition: transform 0.4s;
+  }
+
+  .letterFront,
+  .letterBack {
+    border: 3px solid white;
+  }
+
+  .hContainer {
+    width: 60%;
+    height: 60%;
+  }
+
+  .heartIcon {
+    font-size: 0.6em;
+  }
+
+  .letter,
+  .icon {
+    transform: scale(0.9) skew(-1deg);
+  }
+
+  .letterContainer:hover .letter,
+  .letterContainer:hover .icon {
+    transform: scale(1) skew(-3deg);
+  }
 }

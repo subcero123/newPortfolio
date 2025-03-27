@@ -1,0 +1,73 @@
+.container {
+    padding: 20px;
+    font-family: "p5hatty";
+  }
+  
+  .experienceCard {
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: white;
+  }
+  
+  .company {
+    margin-left: 5px;
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .period {
+    font-size: 1.2rem !important;
+    color: white !important;
+  }
+  
+  .description {
+    margin-top: 10px;
+    color: white;
+    font-size: 1.5rem !important;
+  }
+  
+  .technologies {
+    margin-top: 10px;
+    margin-right: 1rem;
+    color: white;
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+  }
+
+  .technology{
+    padding: 5px 10px;
+    background-color: black;
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  /* Estilos para tablet */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .title {
+      font-size: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      font-weight: normal;
+    }
+
+    .company {
+      font-size: 1.2rem;
+      margin-left: 0;
+    }
+
+    .period {
+      font-size: 1.2rem !important;
+    }
+  }

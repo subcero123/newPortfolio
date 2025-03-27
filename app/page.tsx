@@ -85,25 +85,32 @@ const RotatedLetter: React.FC<{
 
 export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setOffsetY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Verificar si estamos en el cliente antes de acceder a window
+    if (typeof window !== "undefined") {
+      const handleScroll = () => setOffsetY(window.scrollY);
+      window.addEventListener("scroll", handleScroll);
 
-  const isMobile = window.innerWidth < 768;
-  const nameLetters = isMobile ? "YOAV".split("") : "HECTOR UGARTE".split("");
-  const rotations = nameLetters.map((_, index) => {
-    const baseRotation = 5;
-    return index % 2 === 0 ? baseRotation : -baseRotation;
-  });
+      // Verificar si es móvil
+      setIsMobile(window.innerWidth < 768);
+
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
 
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const handleToggleExpand = (id: number | null) => {
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
+
+  const nameLetters = isMobile ? "YOAV".split("") : "HECTOR UGARTE".split("");
+  const rotations = nameLetters.map((_, index) => {
+    const baseRotation = 5;
+    return index % 2 === 0 ? baseRotation : -baseRotation;
+  });
 
   return (
     <div className="min-h-screen text-white">

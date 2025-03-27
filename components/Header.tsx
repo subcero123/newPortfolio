@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 z-50 p-6 `}>
+      <header className={`fixed top-0 left-0 z-50 p-6`}>
         <button
           onClick={toggleMenu}
           className="menu-button"
@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
 
         {isMenuOpen && (
           <nav
-            className="absolute top-full left-6 mt-2 rounded-lg shadow-lg w-96"
+            className="absolute top-full left-6 mt-2 rounded-lg shadow-lg header-container"
             style={{ fontFamily: "p5hatty", fontSize: "1.5rem" }}
           >
             <ul ref={navRef} className="relative">

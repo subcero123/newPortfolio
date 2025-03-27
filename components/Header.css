@@ -100,3 +100,14 @@
     transform: rotateZ(0deg) rotateY(0deg) translateY(0);
   }
 }
+
+.header-container{
+  width: 24rem;
+}
+
+/* Estilos mobile */
+@media (max-width: 767px) {
+  .header-container{
+    width: 90vw;
+  }
+}

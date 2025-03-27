@@ -71,3 +71,57 @@
       font-size: 1.2rem !important;
     }
   }
+
+  /* Estilos para mobile */
+  @media (max-width: 767px) {
+
+    .header{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .title {
+      font-size: 1.3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    .company {
+      font-size: 1.2rem;
+      margin-left: 0;
+    }
+
+    .period {
+      font-size: 1.2rem !important;
+    }
+
+    .experienceCard{
+      padding: 0px;
+    }
+
+    .container{
+      padding: 10px;
+    }
+
+    .description {
+      font-size: 1.2rem !important;
+      text-align: justify;
+    }
+
+    .technologies {
+      font-size: 1.2rem;
+      /* Break si no caben los componentes */
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .technology{
+      padding: 5px 5px;
+    }
+  }

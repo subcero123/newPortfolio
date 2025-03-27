@@ -12,7 +12,7 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Fullstack Developer Internship",
+    title: "Fullstack Developer",
     period: "Nov 2024 - Jan 2025",
     description:
       "Built a drag-and-drop form builder using Vue.js and Laravel, enabling dynamic data collection from multiple clients and feeding an internal database for streamlined processing and analysis. Deployed the system on AWS with containerized infrastructure, reducing operational costs by 15%.",
@@ -25,7 +25,7 @@ const experiences: Experience[] = [
     period: "Jan 2023 - Nov 2024",
     description:
       "Developed full-stack applications using the MEAN stack. Integrated WooCommerce with various eCommerce platforms, increasing client sales by 20%. Created complex animations and Three.js experiences for landing pages, improving user engagement and performance.",
-    technologies: ["MEAN Stack", "WooCommerce", "Three.js", "Angular"],
+    technologies: ["MEAN", "WooCommerce", "Three.js", "Angular"],
     company: "AddAstra",
     location: "Puebla, México",
   },

@@ -117,9 +117,7 @@ export default function Home() {
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
-          backgroundImage: `url(${
-            process.env.NEXT_PUBLIC_BASE_PATH || ""
-          }/hero-bg.png)`,
+          backgroundImage: `url(/my-portfolio/hero-bg.png)`,
           backgroundSize: "125%", // Escala la imagen para que parezca más alejada
           backgroundPosition: "center", // Centra la imagen
           backgroundRepeat: "no-repeat", // Evita que la imagen se repita
@@ -199,7 +197,7 @@ export default function Home() {
         </div>
         <main className="w-full h-screen relative">
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/projects-bg.png`}
+            src={`/my-portfolio/projects-bg.png`}
             alt="Background"
             className="absolute left-0 w-full h-full"
             style={{ top: "-2%" }}

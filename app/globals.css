@@ -103,3 +103,9 @@ src: url('/my-portfolio/fonts/Persona5MenuFontPrototype-Regular.ttf') format('tr
     font-size: 3rem !important;
   }
 }
+
+.background-image{
+  background-size: "125%";
+  background-position: "center";
+  background-repeat: "no-repeat";
+}

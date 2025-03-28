@@ -117,10 +117,7 @@ export default function Home() {
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
-          backgroundImage: `url(/my-portfolio/hero-bg.png)`,
-          backgroundSize: "125%", // Escala la imagen para que parezca más alejada
-          backgroundPosition: "center", // Centra la imagen
-          backgroundRepeat: "no-repeat", // Evita que la imagen se repita
+          backgroundImage: `url(/my-portfolio/hero-bg.webp)`,
           backgroundPositionY: `${offsetY * 0.5}px`, // Parallax effect
         }}
       >
@@ -131,7 +128,7 @@ export default function Home() {
         <Header onMenuClick={handleToggleExpand} />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
-            src={'/my-portfolio/header-bg.png'}
+            src={'/my-portfolio/header-bg.webp'}
             alt="Imagen de encabezado"
             layout="fill"
             />
@@ -199,7 +196,7 @@ export default function Home() {
         </div>
         <main className="w-full h-screen relative">
           <img
-            src={`/my-portfolio/projects-bg.png`}
+            src={`/my-portfolio/projects-bg.webp`}
             alt="Background"
             className="absolute left-0 w-full h-full"
             style={{ top: "-2%" }}

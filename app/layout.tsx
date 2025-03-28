@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Hector Ugarte | Portfolio",
   description: "Fullstack developer, React, Angular, TypeScript, TailwindCSS",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/my-portfolio/favicon.ico",
+    shortcut: "/my-portfolio/favicon.ico",
+    apple: "/my-portfolio/apple-touch-icon.png",
   },
   keywords: [
     "Hector Ugarte",

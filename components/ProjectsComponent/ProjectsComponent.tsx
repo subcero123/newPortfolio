@@ -21,14 +21,14 @@ const ProjectsComponent: React.FC = () => {
             id: 3,
             title: "Private Production App",
             technologies: ["PHP", "MySQL", "Laravel"],
-            link: "http://iocsa.ixtle.org/login.php",
+            link: "#",
             img: "/my-portfolio/project-3.webp",
         },
         {
             id: 4,
             title: "HR Management System",
             technologies: ["Laravel", "PHP", "MySQL"],
-            link: "http://nomina-dev.lan.clinik.com:30080/dashboard",
+            link: "#",
             img: "/my-portfolio/project-4.webp",
         },
         {

@@ -68,6 +68,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             gap: "5px",
             transform: "perspective(200px) rotateY(25deg)",
           }}
+          aria-label="Open Menu"
         >
           {isMenuOpen ? (
             <>

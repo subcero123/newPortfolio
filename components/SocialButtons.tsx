@@ -1,16 +1,19 @@
-import type React from "react"
-import { Linkedin, Github, AtSign } from "lucide-react"
-import styles from "./SocialButtons.module.css"
+import type React from "react";
+import { Linkedin, Github, AtSign } from "lucide-react";
+import styles from "./SocialButtons.module.css";
 
 const SocialButtons: React.FC = () => {
   return (
-    <div className={`${styles.socialButtonsContainer} relative -top-4 bounce-hover`}>
+    <div
+      className={`${styles.socialButtonsContainer} relative -top-4 bounce-hover`}
+    >
       <div className={styles.socialButtons}>
         <a
           href="https://www.linkedin.com/in/hector-ugarte-ramirez-875693280/"
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.socialIcon} bounce-hover`}
+          aria-label="Linkedin of Hector Ugarte"
         >
           <Linkedin size={32} fill="currentColor" />
         </a>
@@ -19,16 +22,20 @@ const SocialButtons: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.socialIcon} bounce-hover`}
+          aria-label="Github of Hector Ugarte"
         >
           <Github size={32} fill="currentColor" />
         </a>
-        <a href="mailto:hector_ugarter@hotmail.com" className={`${styles.socialIcon} bounce-hover`}>
+        <a
+          href="mailto:hector_ugarter@hotmail.com"
+          className={`${styles.socialIcon} bounce-hover`}
+          aria-label="Send an email to Hector Ugarte"
+        >
           <AtSign size={32} />
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SocialButtons
-
+export default SocialButtons;

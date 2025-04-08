@@ -33,7 +33,6 @@
 }
 
 .letterFront {
-  
   text-shadow: 2px 2px 0 rgba(116, 109, 110, 0.5), 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
@@ -89,6 +88,8 @@
 .letterContainer:hover .icon {
   filter: drop-shadow(0 0 5px rgba(230, 0, 18, 0.7));
 }
+
+
 
 /* Estilos para tablet */
 @media (max-width: 768px) {

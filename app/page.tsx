@@ -128,30 +128,44 @@ export default function Home() {
         <Header onMenuClick={handleToggleExpand} />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
-            src={'/my-portfolio/header-bg.webp'}
+            src={"/my-portfolio/header-bg.webp"}
             alt="Imagen de encabezado"
             layout="fill"
-            />
+          />
         </div>
-        <div className="relative h-[72vh]">
-          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <div className="relative h-[72vh] flex">
+          <div
+            className="relative w-1/3 imagen-contorno"
+            style={{
+              position: "absolute",
+              bottom: "-10%",
+            }}
+          >
+            <Image
+              src="/my-portfolio/me2.webp"
+              alt="Contorno"
+              layout="fill"
+              className="animated-image"
+            />
+          </div>
+          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 w-2/3 ml-auto">
             <h1
               className="mb-2 tracking-widest persona5-text"
               style={{
-                fontWeight: "1000",
+          fontWeight: "1000",
               }}
             >
               {nameLetters.map((letter, index) => (
-                <RotatedLetter
-                  key={index}
-                  letter={letter}
-                  rotation={rotations[index]}
-                  isRed={(index === 3 || index === 11) && letter !== " "}
-                  isH={index === 0}
-                  isMiddle={index === 4}
-                  isSpace={letter === " "}
-                  isTor={index >= 3 && index <= 5}
-                />
+          <RotatedLetter
+            key={index}
+            letter={letter}
+            rotation={rotations[index]}
+            isRed={(index === 3 || index === 11) && letter !== " "}
+            isH={index === 0}
+            isMiddle={index === 4}
+            isSpace={letter === " "}
+            isTor={index >= 3 && index <= 5}
+          />
               ))}
             </h1>
             <PersonaButton

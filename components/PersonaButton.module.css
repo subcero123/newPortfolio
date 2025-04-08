@@ -34,6 +34,10 @@
     transform: rotateY(25deg) translateZ(-20px);
   }
 
+  .personaButtonContainer{
+    align-self:flex-end;
+  }
+
   .personaButtonText {
     font-size: 2.5rem;
   }

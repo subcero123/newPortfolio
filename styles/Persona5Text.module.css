@@ -1,8 +1,8 @@
 .persona5Text {
   position: absolute;
-  top: 30%;
+  top: 80%;
   right: 5%;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
   z-index: 5;
   letter-spacing: 2px;
@@ -46,7 +46,7 @@
 /* Estilo para tablet */
 @media (max-width: 768px) {
   .persona5Text {
-    top: 30%;
+    top: 85%;
     right: 5%;
     font-size: 3rem;
   }

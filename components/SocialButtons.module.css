@@ -17,3 +17,18 @@
   color: white;
 }
 
+
+/* Estilo para tablet */
+@media (max-width: 768px) {
+  .socialButtonsContainer{
+    align-self: flex-end;
+    translate: -66px -10px;
+  }
+}
+
+/* Estilo para mobile */
+@media (max-width: 425px) {
+  .socialButtonsContainer{
+    translate: -35px -10px;
+  }
+}

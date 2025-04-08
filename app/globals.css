@@ -128,15 +128,32 @@ src: url('/my-portfolio/fonts/Persona5MenuFontPrototype-Regular.ttf') format('tr
   }
 }
 
+/* Estilos para laptop */
+@media (max-width: 1024px) {
+  .imagen-contorno{
+    width: 550px;
+    height: 550px;
+  }
+
+  
+}
+
+
 @media (max-width: 768px) {
   .persona5-text {
     font-size: 2.6rem !important;
   }
+
+  .imagen-contorno{
+    width: 500px;
+    height: 500px;
+  }
+
 }
 
 
 /* mobile */
-@media (max-width: 768px) {
+@media (max-width: 425px) {
   .persona5-text {
     font-size: 3rem !important;
   }

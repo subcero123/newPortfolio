@@ -17,10 +17,9 @@ const RotatedLetter: React.FC<{
   rotation: number;
   isRed?: boolean;
   isH?: boolean;
-  isMiddle?: boolean;
   isSpace?: boolean;
   isTor?: boolean;
-}> = ({ letter, rotation, isRed, isH, isMiddle, isSpace, isTor }) => (
+}> = ({ letter, rotation, isRed, isH, isSpace, isTor }) => (
   <div
     className={styles.letterContainer}
     style={{ transform: `rotate(${rotation}deg)` }}
@@ -37,20 +36,8 @@ const RotatedLetter: React.FC<{
           <div className={styles.hContainer}>
             <span>{letter}</span>
           </div>
-        ) : isSpace ? (
-          <Spade size={24} fill="white" className={styles.icon} />
         ) : (
-          <>
-            <span className={styles.letter}>{letter}</span>
-            {isMiddle && (
-              <Heart
-                className={`${styles.heartIcon} ${styles.icon}`}
-                size={16}
-                fill="#e60012"
-                stroke="#e60012"
-              />
-            )}
-          </>
+          <span className={styles.letter}>{letter}</span>
         )}
       </div>
       <div
@@ -60,28 +47,64 @@ const RotatedLetter: React.FC<{
         }}
       >
         {isSpace ? (
-          <Spade
-            size={24}
-            fill={isTor ? "white" : "black"}
-            className={styles.icon}
-          />
+          <span className={styles.space}></span>
         ) : (
-          <>
-            <span className={styles.letter}>{letter}</span>
-            {isMiddle && (
-              <Heart
-                className={`${styles.heartIcon} ${styles.icon}`}
-                size={16}
-                fill={isTor ? "white" : "black"}
-                stroke={isTor ? "white" : "black"}
-              />
-            )}
-          </>
+          <span className={styles.letter}>{letter}</span>
         )}
       </div>
     </div>
   </div>
 );
+
+const RotatedLetterGrid: React.FC<{
+  text: string;
+  rotations: number[];
+  redIndices?: number[];
+  hIndices?: number[];
+  spaceIndices?: number[];
+  torIndices?: number[];
+}> = ({
+  text,
+  rotations,
+  redIndices = [],
+  hIndices = [],
+  spaceIndices = [],
+  torIndices = [],
+}) => {
+  const topRow = text.slice(0, 6).split("");
+  const bottomRow = text.slice(6, 12).split("");
+
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div className="flex gap-2">
+        {topRow.map((letter, i) => (
+          <RotatedLetter
+            key={i}
+            letter={letter}
+            rotation={rotations[i]}
+            isRed={redIndices.includes(i)}
+            isH={hIndices.includes(i)}
+            isSpace={spaceIndices.includes(i)}
+            isTor={torIndices.includes(i)}
+          />
+        ))}
+      </div>
+      <div className="flex gap-2">
+        {bottomRow.map((letter, i) => (
+          <RotatedLetter
+            key={i + 6}
+            letter={letter}
+            rotation={rotations[i + 6]}
+            isRed={redIndices.includes(i + 6)}
+            isH={hIndices.includes(i + 6)}
+            isSpace={spaceIndices.includes(i + 6)}
+            isTor={torIndices.includes(i + 6)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function Home() {
   const [offsetY, setOffsetY] = useState(0);
@@ -106,7 +129,7 @@ export default function Home() {
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
 
-  const nameLetters = isMobile ? "YOAV".split("") : "HECTOR UGARTE".split("");
+  const nameLetters = isMobile ? "YOAV".split("") : "HECTORUGARTE".split("");
   const rotations = nameLetters.map((_, index) => {
     const baseRotation = 5;
     return index % 2 === 0 ? baseRotation : -baseRotation;
@@ -119,6 +142,8 @@ export default function Home() {
         style={{
           backgroundImage: `url(/my-portfolio/hero-bg.webp)`,
           backgroundPositionY: `${offsetY * 0.5}px`, // Parallax effect
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <div
@@ -133,79 +158,81 @@ export default function Home() {
             layout="fill"
           />
         </div>
-        <div className="relative h-[72vh] flex">
+        <div className="relative h-[72vh] flex" style={{maxWidth: "1440px", width: "100%", alignSelf: "center"}}>
+          {!isMobile && (
+            <div
+              className="relative w-1/3 imagen-contorno"
+              style={{
+                position: "absolute",
+                bottom: "-10%",
+              }}
+            >
+              <Image
+                src="/my-portfolio/me2.webp"
+                alt="Contorno"
+                layout="fill"
+                className="animated-image"
+              />
+            </div>
+          )}
           <div
-            className="relative w-1/3 imagen-contorno"
-            style={{
-              position: "absolute",
-              bottom: "-10%",
-            }}
+            className={`relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ${
+              isMobile ? "w-full" : "w-2/3 ml-auto"
+            }`}
           >
-            <Image
-              src="/my-portfolio/me2.webp"
-              alt="Contorno"
-              layout="fill"
-              className="animated-image"
-            />
-          </div>
-          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 w-2/3 ml-auto">
             <h1
               className="mb-2 tracking-widest persona5-text"
               style={{
-          fontWeight: "1000",
+                fontWeight: "1000",
               }}
             >
-              {nameLetters.map((letter, index) => (
-          <RotatedLetter
-            key={index}
-            letter={letter}
-            rotation={rotations[index]}
-            isRed={(index === 3 || index === 11) && letter !== " "}
-            isH={index === 0}
-            isMiddle={index === 4}
-            isSpace={letter === " "}
-            isTor={index >= 3 && index <= 5}
-          />
-              ))}
+              <RotatedLetterGrid
+                text={nameLetters.join("")}
+                rotations={[0, 5, -5, 10, -10, 15, 0, -15, 5, -5, 10, -10]}
+                redIndices={[1, 10]}
+                hIndices={[0, 6]}
+                spaceIndices={[5]}
+                torIndices={[11]}
+              />
             </h1>
             <PersonaButton
               text="SCHEDULE"
               onClick={() => open("https://calendly.com/hector_ugarter/30min")}
             />
             <SocialButtons />
-          </div>
-        </div>
-        <div
-          className={p5Styles.persona5Text}
-          style={{ fontFamily: "p5hatty" }}
-        >
-          <div>
-            {"FULLSTACK".split("").map((letter, index) => (
-              <span
-                key={index}
-                className={[
-                  index === 0 || index === 4
-                    ? p5Styles.redText
-                    : p5Styles.whiteText,
-                ].join(" ")}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-          <div>
-            {"DEVELOPER".split("").map((letter, index) => (
-              <span
-                key={index}
-                className={[
-                  index === 0 || index === 6
-                    ? p5Styles.redText
-                    : p5Styles.whiteText,
-                ].join(" ")}
-              >
-                {letter}
-              </span>
-            ))}
+            <div
+              className={p5Styles.persona5Text}
+              style={{ fontFamily: "p5hatty" }}
+            >
+              <div>
+                {"FULLSTACK".split("").map((letter, index) => (
+                  <span
+                    key={index}
+                    className={[
+                      index === 0 || index === 4
+                        ? p5Styles.redText
+                        : p5Styles.whiteText,
+                    ].join(" ")}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </div>
+              <div>
+                {"DEVELOPER".split("").map((letter, index) => (
+                  <span
+                    key={index}
+                    className={[
+                      index === 0 || index === 6
+                        ? p5Styles.redText
+                        : p5Styles.whiteText,
+                    ].join(" ")}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <main className="w-full h-screen relative">

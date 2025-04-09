@@ -19,7 +19,7 @@
 
 
 /* Estilo para tablet */
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 426px) {
   .socialButtonsContainer{
     align-self: flex-end;
     translate: -66px -10px;
@@ -29,6 +29,7 @@
 /* Estilo para mobile */
 @media (max-width: 425px) {
   .socialButtonsContainer{
-    translate: -35px -10px;
+    align-self: center;
+    
   }
 }

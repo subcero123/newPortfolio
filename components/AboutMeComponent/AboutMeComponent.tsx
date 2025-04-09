@@ -50,48 +50,30 @@ const AboutMeComponent: React.FC = () => {
           <h3 className={`${styles.title} text-center`}>My Stack and Skills</h3>
 
           <div className={`flex flex-wrap justify-center items-center gap-4 mt-2 ${styles["container-stack"]}`}>
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/angular.svg"
-              alt="Angular"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/react.svg"
-              alt="React"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/php.svg"
-              alt="PHP"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/laravel.svg"
-              alt="Laravel"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/symfony.svg"
-              alt="Symfony"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/docker.svg"
-              alt="Docker"
-              className="h-20 w-20"
-            />
-            <img
-              loading="lazy"
-              src="/my-portfolio/icons/aws.svg"
-              alt="AWS"
-              className="h-20 w-20"
-            />
+            {[
+              { src: "/my-portfolio/icons/angular.svg", alt: "Angular" },
+              { src: "/my-portfolio/icons/react.svg", alt: "React" },
+              { src: "/my-portfolio/icons/php.svg", alt: "PHP" },
+              { src: "/my-portfolio/icons/laravel.svg", alt: "Laravel" },
+              { src: "/my-portfolio/icons/symfony.svg", alt: "Symfony" },
+              { src: "/my-portfolio/icons/docker.svg", alt: "Docker" },
+              { src: "/my-portfolio/icons/aws.svg", alt: "AWS" },
+            ].map((tech, index) => (
+              <div
+                key={index}
+                className="relative group"
+              >
+                <img
+                  loading="lazy"
+                  src={tech.src}
+                  alt={tech.alt}
+                  className="h-20 w-20 transition-transform duration-300 hover:animate-bounce"
+                />
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full opacity-0 group-hover:opacity-100 bg-black text-white text-sm rounded px-2 py-1 transition-opacity duration-300">
+                  {tech.alt}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

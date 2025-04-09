@@ -283,6 +283,9 @@ export default function Home() {
       <footer>
         <div className="bg-black text-white text-center py-4">
           <p>&copy; 2025 Hector Yoav Ugarte Ramirez</p>
+            <p style={{ fontSize: "0.75rem" }}>
+            Special thanks to Ulises Solano for contributing.
+            </p>
         </div>
       </footer>
     </div>

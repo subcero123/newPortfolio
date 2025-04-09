@@ -11,6 +11,7 @@ import p5Styles from "../styles/Persona5Text.module.css";
 import { useEffect, useState } from "react";
 import ProjectsComponent from "@/components/ProjectsComponent/ProjectsComponent";
 import ExperienceComponent from "@/components/ExperienceComponent/ExperienceComponent";
+import AboutMeComponent from "@/components/AboutMeComponent/AboutMeComponent";
 
 const RotatedLetter: React.FC<{
   letter: string;
@@ -158,7 +159,10 @@ export default function Home() {
             layout="fill"
           />
         </div>
-        <div className="relative h-[72vh] flex" style={{maxWidth: "1440px", width: "100%", alignSelf: "center"}}>
+        <div
+          className="relative h-[72vh] flex"
+          style={{ maxWidth: "1440px", width: "100%", alignSelf: "center" }}
+        >
           {!isMobile && (
             <div
               className="relative w-1/3 imagen-contorno"
@@ -267,10 +271,12 @@ export default function Home() {
             <Persona3DContainer
               id={3}
               title="About Me"
-              description="I am a fullstack developer with experience in building scalable and dynamic platforms, specializing in MEAN Stack, Vue.js, Laravel, and AWS. I have worked with international startups, freelance contracts, and research projects in Japan and Mexico, developing innovative solutions for industries such as automotive, industrial, and pharmaceutical."
+              description=""
               isExpanded={expandedId === 3}
               onToggleExpand={() => handleToggleExpand(3)}
-            ></Persona3DContainer>
+            >
+              <AboutMeComponent/>
+            </Persona3DContainer>
           </div>
         </main>
       </div>

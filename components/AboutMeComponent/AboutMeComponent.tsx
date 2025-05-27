@@ -17,7 +17,7 @@ const AboutMeComponent: React.FC = () => {
         <div className="w-full xl:w-1/3 flex justify-center">
           <img
             loading="lazy"
-            src="/my-portfolio/me-real.webp"
+            src="/me-real.webp"
             alt="Hector Yoav Ugarte Ramírez picture"
           />
         </div>
@@ -51,13 +51,13 @@ const AboutMeComponent: React.FC = () => {
 
           <div className={`flex flex-wrap justify-center items-center gap-4 mt-2 ${styles["container-stack"]}`}>
             {[
-              { src: "/my-portfolio/icons/angular.svg", alt: "Angular" },
-              { src: "/my-portfolio/icons/react.svg", alt: "React" },
-              { src: "/my-portfolio/icons/php.svg", alt: "PHP" },
-              { src: "/my-portfolio/icons/laravel.svg", alt: "Laravel" },
-              { src: "/my-portfolio/icons/symfony.svg", alt: "Symfony" },
-              { src: "/my-portfolio/icons/docker.svg", alt: "Docker" },
-              { src: "/my-portfolio/icons/aws.svg", alt: "AWS" },
+              { src: "/icons/angular.svg", alt: "Angular" },
+              { src: "/icons/react.svg", alt: "React" },
+              { src: "/icons/php.svg", alt: "PHP" },
+              { src: "/icons/laravel.svg", alt: "Laravel" },
+              { src: "/icons/symfony.svg", alt: "Symfony" },
+              { src: "/icons/docker.svg", alt: "Docker" },
+              { src: "/icons/aws.svg", alt: "AWS" },
             ].map((tech, index) => (
               <div
                 key={index}

@@ -141,7 +141,7 @@ export default function Home() {
       <div
         className="relative bg-cover bg-center w-full fixed top-0 left-0 z-0"
         style={{
-          backgroundImage: `url(/my-portfolio/hero-bg.webp)`,
+          backgroundImage: `url(/hero-bg.webp)`,
           backgroundPositionY: `${offsetY * 0.5}px`, // Parallax effect
           display: "flex",
           flexDirection: "column",
@@ -154,7 +154,7 @@ export default function Home() {
         <Header onMenuClick={handleToggleExpand} />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
-            src={"/my-portfolio/header-bg.webp"}
+            src={"/header-bg.webp"}
             alt="Imagen de encabezado"
             layout="fill"
           />
@@ -172,7 +172,7 @@ export default function Home() {
               }}
             >
               <Image
-                src="/my-portfolio/me2.webp"
+                src="/me2.webp"
                 alt="Contorno"
                 layout="fill"
                 className="animated-image"
@@ -241,7 +241,7 @@ export default function Home() {
         </div>
         <main className="w-full h-screen relative">
           <img
-            src={`/my-portfolio/projects-bg.webp`}
+            src={`/projects-bg.webp`}
             alt="Background"
             className="absolute left-0 w-full h-full"
             style={{ top: "-2%" }}

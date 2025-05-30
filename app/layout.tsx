@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hector Ugarte | Portfolio",
-  description: "Fullstack developer, React, Angular, TypeScript, TailwindCSS",
+  title: "Hector Ugarte Portfolio",
+  description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -11,23 +11,54 @@ export const metadata: Metadata = {
   },
   keywords: [
     "Hector Ugarte",
-    "Hector Yoav Ugarte Ramirez",
-    "portfolio",
-    "fullstack developer",
+    "Hector Yoav Ugarte Ramírez",
+    "Hector Ugarte Portfolio",
+    "Hector Ugarte Site",
+    "Hector Ugarte Web",
+    "Hector Ugarte Developer",
+    "Hector Ugarte Fullstack",
+    "Hector Yoav Portfolio",
+    "Fullstack developer",
+    "React developer",
+    "Angular developer",
+    "TypeScript developer",
+    "Frontend",
+    "Backend",
+    "Portfolio developer",
+    "Web developer",
+    "HALY Web agency",
+    "HALY",
+    "Desarrollador Fullstack",
+    "Desarrollador React",
+    "Desarrollador Angular",
+    "Desarrollador Puebla",
+    "Desarrollador México",
+    "Desarrollador Frontend",
+    "Desarrollador Backend",
   ],
+
   authors: [{ name: "Hector Yoav Ugarte Ramirez" }],
   openGraph: {
-    title: "Hector Ugarte | Portfolio",
-    description: "Fullstack developer, React, Angular, TypeScript, TailwindCSS",
+    title: "Hector Ugarte Portfolio",
+    description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
     url: "http://hectorugarte.site/",
     siteName: "Hector Ugarte Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Hector Ugarte Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hector Ugarte | Portfolio",
-    description: "Fullstack developer, React, Angular, TypeScript, TailwindCSS",
+    title: "Hector Ugarte Portfolio",
+    description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
+    images: ["/og-image.png"],
   },
 };
 

@@ -41,13 +41,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Hector Ugarte Portfolio",
     description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
-    url: "http://hectorugarte.site/",
+    url: "https://hectorugarte.site/",
     siteName: "Hector Ugarte Portfolio",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://hectorugarte.site/og-image.png",
         width: 1200,
         height: 630,
         alt: "Hector Ugarte Portfolio",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hector Ugarte Portfolio",
     description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
-    images: ["/og-image.png"],
+    images: ["https://hectorugarte.site/og-image.png"],
   },
 };
 

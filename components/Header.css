@@ -1,5 +1,5 @@
 .slide-in {
-  animation: slideIn 0.1s backwards;
+  animation: slideIn 0.03s backwards;
 }
 
 @keyframes slideIn {

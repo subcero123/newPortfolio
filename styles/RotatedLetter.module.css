@@ -16,7 +16,15 @@
   transform-style: preserve-3d;
 }
 
+.letterInner.flipped {
+  transform: rotateY(180deg);
+}
+
 .letterContainer:hover .letterInner {
+  transform: rotateY(180deg);
+}
+
+.letterContainer.flipped .letterInner {
   transform: rotateY(180deg);
 }
 
@@ -86,6 +94,17 @@
 }
 
 .letterContainer:hover .icon {
+  filter: drop-shadow(0 0 5px rgba(230, 0, 18, 0.7));
+}
+
+.letterContainer.flipped .letter,
+.letterContainer.flipped .icon {
+  transform: scale(1.2) skew(-5deg);
+  text-shadow: 2px 2px 0 rgba(230, 0, 18, 0.5), 4px 4px 0 rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(0 0 5px rgba(230, 0, 18, 0.7));
+}
+
+.letterContainer.flipped .icon {
   filter: drop-shadow(0 0 5px rgba(230, 0, 18, 0.7));
 }
 

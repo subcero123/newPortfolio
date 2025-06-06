@@ -20,9 +20,12 @@ const RotatedLetter: React.FC<{
   isH?: boolean;
   isSpace?: boolean;
   isTor?: boolean;
-}> = ({ letter, rotation, isRed, isH, isSpace, isTor }) => (
+  isFlipped?: boolean;
+}> = ({ letter, rotation, isRed, isH, isSpace, isTor, isFlipped }) => (
   <div
-    className={styles.letterContainer}
+    className={
+      styles.letterContainer + (isFlipped ? ' ' + styles.flipped : '')
+    }
     style={{ transform: `rotate(${rotation}deg)` }}
   >
     <div className={styles.letterInner}>
@@ -47,11 +50,7 @@ const RotatedLetter: React.FC<{
           color: isTor ? "white" : "black",
         }}
       >
-        {isSpace ? (
-          <span className={styles.space}></span>
-        ) : (
           <span className={styles.letter}>{letter}</span>
-        )}
       </div>
     </div>
   </div>
@@ -64,6 +63,7 @@ const RotatedLetterGrid: React.FC<{
   hIndices?: number[];
   spaceIndices?: number[];
   torIndices?: number[];
+  flippedIndex?: number;
 }> = ({
   text,
   rotations,
@@ -71,6 +71,7 @@ const RotatedLetterGrid: React.FC<{
   hIndices = [],
   spaceIndices = [],
   torIndices = [],
+  flippedIndex,
 }) => {
   const topRow = text.slice(0, 6).split("");
   const bottomRow = text.slice(6, 12).split("");
@@ -87,6 +88,7 @@ const RotatedLetterGrid: React.FC<{
             isH={hIndices.includes(i)}
             isSpace={spaceIndices.includes(i)}
             isTor={torIndices.includes(i)}
+            isFlipped={flippedIndex === i}
           />
         ))}
       </div>
@@ -100,6 +102,7 @@ const RotatedLetterGrid: React.FC<{
             isH={hIndices.includes(i + 6)}
             isSpace={spaceIndices.includes(i + 6)}
             isTor={torIndices.includes(i + 6)}
+            isFlipped={flippedIndex === i + 6}
           />
         ))}
       </div>
@@ -135,6 +138,18 @@ export default function Home() {
     const baseRotation = 5;
     return index % 2 === 0 ? baseRotation : -baseRotation;
   });
+
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nameLength = isMobile ? 4 : 12;
+      const randomIndex = Math.floor(Math.random() * nameLength);
+      setFlippedIndex(randomIndex);
+      setTimeout(() => setFlippedIndex(null), 1500); // tiempo de animación
+    }, 8000); // Cambiado a 5 segundos
+    return () => clearInterval(interval);
+  }, [isMobile]);
 
   return (
     <div className="min-h-screen text-white">
@@ -197,6 +212,7 @@ export default function Home() {
                 hIndices={[0, 6]}
                 spaceIndices={[5]}
                 torIndices={[11]}
+                flippedIndex={flippedIndex ?? undefined}
               />
             </h1>
             <PersonaButton

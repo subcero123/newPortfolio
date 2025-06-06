@@ -118,6 +118,8 @@
   .description {
     font-size: 1.2rem !important;
     text-align: justify;
+    list-style-type: none; /* Quita los puntos de la lista en móvil */
+    padding-left: 0; /* Elimina el padding izquierdo ya que no hay puntos */
   }
 
   .technologies {

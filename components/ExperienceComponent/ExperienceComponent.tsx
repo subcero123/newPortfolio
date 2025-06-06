@@ -13,10 +13,21 @@ interface Experience {
 const experiences: Experience[] = [
   {
     title: "Fullstack Developer",
+    period: "Jan 2024 - Present",
+    description: [
+      "Developed full-stack platforms using PHP, Laravel, and Ruby for industrial companies, optimizing waste margins and increasing resource utilization efficiency by 25%.",
+      "Implemented CI/CD pipelines and conducted proactive server maintenance for these platforms, ensuring reliable deployments and reducing downtime risks.",
+    ],
+    technologies: ["PHP", "Laravel", "Ruby", "CI/CD"],
+    company: "IXTLE Solutions",
+    location: "Guadalajara, Mexico",
+  },
+  {
+    title: "Fullstack Developer Internship",
     period: "Nov 2024 - Jan 2025",
     description: [
       "Built a drag-and-drop form builder using Vue.js and Laravel, enabling dynamic data collection from multiple clients and feeding an internal database for streamlined processing and analysis.",
-      "Deployed the system on AWS with containerized infrastructure, reducing operational costs by 15%."
+      "Deployed the system on AWS with containerized infrastructure, reducing operational costs by 45%.",
     ],
     technologies: ["Vue.js", "Laravel", "AWS", "Docker"],
     company: "Koeeru",
@@ -26,11 +37,17 @@ const experiences: Experience[] = [
     title: "Contract Fullstack Developer",
     period: "Jan 2023 - Nov 2024",
     description: [
-      "Developed full-stack applications using the MEAN stack.",
-      "Integrated WooCommerce with various eCommerce platforms, increasing client sales by 20%.",
-      "Created complex animations and Three.js experiences for landing pages, improving user engagement and performance."
+      "Built full-stack web applications using PHP frameworks (primarily WordPress) and MEAN stack when required.",
+      "Integrated WooCommerce and implemented SEO optimizations, custom animations (Three.js), and performance enhancements, boosting client sales and Google search visibility.",
     ],
-    technologies: ["MEAN", "WooCommerce", "Three.js", "Angular"],
+    technologies: [
+      "PHP",
+      "WordPress",
+      "MEAN",
+      "WooCommerce",
+      "Three.js",
+      "SEO",
+    ],
     company: "AddAstra",
     location: "Puebla, México",
   },
@@ -39,7 +56,7 @@ const experiences: Experience[] = [
     period: "Apr 2023 - Jul 2023",
     description: [
       "Implemented a platform using RTSP protocol, Django, and React for real-time visualization and remote control of a vehicle.",
-      "Developed an AI for road prediction and autonomous navigation, using AWS Lambda for real-time data processing."
+      "Developed an AI for road prediction and autonomous navigation, using AWS Lambda for real-time data processing.",
     ],
     technologies: ["Django", "React", "RTSP", "AWS Lambda"],
     company: "Mirai Innovation Research Institute",
@@ -47,13 +64,13 @@ const experiences: Experience[] = [
   },
   {
     title: "Fullstack Developer",
-    period: "2023 - Present",
+    period: "2022 - Present",
     description: [
-      "Developed custom platforms for automotive, industrial, and pharmaceutical sectors, leveraging AWS services to optimize resource management and reduce infrastructure costs by up to 30%.",
-      "Migrated legacy systems to modern frameworks, ensuring smooth transitions and improved maintainability.",
-      "Implemented interactive UI components and workflows in Angular, ensuring compliance with Figma designs and improving usability across multiple devices."
+      "Led full-stack development projects primarily using the MEAN/MERN stack and occasionally PHP-based frameworks (e.g., WordPress, Laravel) for private companies and SMEs in Mexico.",
+      "Designed and deployed custom software solutions that improved internal processes by at least 20%, while also enhancing online visibility through SEO and Google Search optimization.",
+      "Implemented responsive UI/UX components, aligned with Figma designs, to ensure cross-device usability and modern user experiences.",
     ],
-    technologies: ["Angular", "AWS", "Figma", "Modernization"],
+    technologies: ["MEAN", "MERN", "WordPress", "Laravel", "SEO", "Figma"],
     company: "Freelancer",
     location: "Remote",
   },

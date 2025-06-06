@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Hector Ugarte Portfolio",
+  title: "Hector Yoav Ugarte Ramírez Portfolio",
   description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
   icons: {
     icon: "/favicon.ico",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
   authors: [{ name: "Hector Yoav Ugarte Ramirez" }],
   openGraph: {
-    title: "Hector Ugarte Portfolio",
+    title: "Hector Yoav Ugarte Ramírez Portfolio",
     description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
     url: "https://hectorugarte.site/",
     siteName: "Hector Ugarte Portfolio",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hector Ugarte Portfolio",
+    title: "Hector Yoav Ugarte Ramírez Portfolio",
     description: "Hector Yoav Ugarte Ramírez - Fullstack developer",
     images: ["https://hectorugarte.site/og-image.png"],
   },

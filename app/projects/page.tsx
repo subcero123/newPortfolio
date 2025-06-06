@@ -10,6 +10,26 @@ export default function ProjectsPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   // Estado para la chapa seleccionada
   const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
+  const [badgeOffset, setBadgeOffset] = useState(0);
+
+  // Lista de badges de ejemplo (puedes personalizar los textos)
+  const badges = [
+    { text: "DEVOPS", rotation: -15 },
+    { text: "FULLSTACK", rotation: -10 },
+    { text: "AWS READY", rotation: -5 },
+    { text: "MEAN STACK", rotation: 0 },
+    { text: "LARAVEL", rotation: 5 },
+    { text: "VUEJS", rotation: 10 },
+    { text: "ANGULAR", rotation: 15 },
+    { text: "REACT", rotation: 20 },
+    { text: "NODEJS", rotation: 25 },
+    { text: "PYTHON", rotation: 30 },
+    { text: "DJANGO", rotation: 35 },
+    { text: "SYMFONY", rotation: 40 },
+  ];
+  const visibleCount = 6;
+  const canScrollUp = badgeOffset > 0;
+  const canScrollDown = badgeOffset + visibleCount < badges.length;
 
   const handleToggleExpand = (id: number | null) => {
     setExpandedId(expandedId === id ? null : id);
@@ -85,13 +105,32 @@ export default function ProjectsPage() {
             zIndex: 3,
             width: "100%",
             maxHeight: "100vh",
-            overflowY: "hidden",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            overflow: "hidden",
           }}
         >
+          {/* Flecha arriba */}
+          <button
+            onClick={() => setBadgeOffset((prev) => (prev - 1 + badges.length) % badges.length)}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: "35%",
+              background: "none",
+              border: "none",
+              color: "#fff",
+              fontSize: "2.5rem",
+              cursor: "pointer",
+              marginBottom: 8,
+              zIndex: 4,
+            }}
+            aria-label="Ver anteriores"
+          >
+            ▲
+          </button>
           {/* Semi-círculo de chapas centrado */}
           <div
             style={{
@@ -102,13 +141,40 @@ export default function ProjectsPage() {
               gap: 12,
             }}
           >
-            <BadgeTag text="DEVOPS" rotation={-15} positionIndex={0} isSelected={selectedBadge === 0} onClick={() => setSelectedBadge(0)} />
-            <BadgeTag text="DEVOPS" rotation={-10} positionIndex={1} isSelected={selectedBadge === 1} onClick={() => setSelectedBadge(1)} />
-            <BadgeTag text="DEVOPS" rotation={0} positionIndex={2} isSelected={selectedBadge === 2} onClick={() => setSelectedBadge(2)} />
-            <BadgeTag text="DEVOPS" rotation={5} positionIndex={3} isSelected={selectedBadge === 3} onClick={() => setSelectedBadge(3)} />
-            <BadgeTag text="DEVOPS" rotation={10} positionIndex={4} isSelected={selectedBadge === 4} onClick={() => setSelectedBadge(4)} />
-            <BadgeTag text="DEVOPS" rotation={15} positionIndex={5} isSelected={selectedBadge === 5} onClick={() => setSelectedBadge(5)} />
+            {Array.from({ length: visibleCount }).map((_, idx) => {
+              const badgeIdx = (badgeOffset + idx) % badges.length;
+              const badge = badges[badgeIdx];
+              return (
+                <BadgeTag
+                  key={badge.text + badgeIdx}
+                  text={badge.text}
+                  rotation={badge.rotation}
+                  positionIndex={idx}
+                  isSelected={selectedBadge === badgeIdx}
+                  onClick={() => setSelectedBadge(badgeIdx)}
+                />
+              );
+            })}
           </div>
+          {/* Flecha abajo */}
+          <button
+            onClick={() => setBadgeOffset((prev) => (prev + 1) % badges.length)}
+            style={{
+              position: "absolute",
+              left: 0,
+              bottom: "35%",
+              background: "none",
+              border: "none",
+              color: "#fff",
+              fontSize: "2.5rem",
+              cursor: "pointer",
+              marginTop: 8,
+              zIndex: 4,
+            }}
+            aria-label="Ver siguientes"
+          >
+            ▼
+          </button>
         </div>
       </main>
       <footer>

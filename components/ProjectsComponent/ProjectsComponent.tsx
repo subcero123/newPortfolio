@@ -79,7 +79,7 @@ const ProjectsComponent: React.FC = () => {
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
                                 >
-                                    Details
+                                    Click to View More
                                 </a>
                             </div>
                         </div>

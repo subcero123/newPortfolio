@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           {isMenuOpen ? (
             <>
               {/* Icono X desde close.svg */}
-              <img width={40} src="close.svg" alt="Close" />
+              <img width={40} src="/close.svg" alt="Close" />
             </>
           ) : (
             <>

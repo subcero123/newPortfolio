@@ -23,9 +23,7 @@ const RotatedLetter: React.FC<{
   isFlipped?: boolean;
 }> = ({ letter, rotation, isRed, isH, isSpace, isTor, isFlipped }) => (
   <div
-    className={
-      styles.letterContainer + (isFlipped ? ' ' + styles.flipped : '')
-    }
+    className={styles.letterContainer + (isFlipped ? " " + styles.flipped : "")}
     style={{ transform: `rotate(${rotation}deg)` }}
   >
     <div className={styles.letterInner}>
@@ -50,7 +48,7 @@ const RotatedLetter: React.FC<{
           color: isTor ? "white" : "black",
         }}
       >
-          <span className={styles.letter}>{letter}</span>
+        <span className={styles.letter}>{letter}</span>
       </div>
     </div>
   </div>
@@ -130,6 +128,9 @@ export default function Home() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const handleToggleExpand = (id: number | null) => {
+    if(id == 1 ){
+      return; 
+    }
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
 
@@ -291,7 +292,7 @@ export default function Home() {
               isExpanded={expandedId === 3}
               onToggleExpand={() => handleToggleExpand(3)}
             >
-              <AboutMeComponent/>
+              <AboutMeComponent />
             </Persona3DContainer>
           </div>
         </main>
@@ -299,6 +300,10 @@ export default function Home() {
       <footer>
         <div className="bg-black text-white text-center py-4">
           <p>&copy; 2025 Hector Yoav Ugarte Ramirez</p>
+          <p style={{ fontSize: "0.8em", color: "#888" }}>
+            This site is a personal project inspired by <em>Persona 5</em>. All
+            rights to original elements belong to ATLUS/SEGA.
+          </p>
         </div>
       </footer>
     </div>

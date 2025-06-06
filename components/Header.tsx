@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import "./Header.css";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   onMenuClick: (id: number | null) => void;
@@ -29,11 +30,14 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
   } | null>(null); // Posición del hover
   const navRef = useRef<HTMLUListElement>(null); // Referencia al contenedor principal
 
+  const pathname = usePathname();
+  const isProjectsPage = pathname === "/projects";
+
   const menuItems = [
-    { id: 0, label: "Home" },
-    { id: 1, label: "My Projects" },
-    { id: 2, label: "Experience" },
-    { id: 3, label: "About Me" },
+    { id: 0, label: "Home", anchor: "" },
+    { id: 1, label: "My Projects", anchor: "projects" },
+    { id: 2, label: "Experience", anchor: "experience" },
+    { id: 3, label: "About Me", anchor: "about-me" },
   ];
 
   const handleMouseEnter = (
@@ -151,21 +155,21 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                 <li
                   key={index}
                   className={`text-center ${
-                    isMenuOpen ? `slide-in delay-${index + 1}` : ""
-                  }`}
+                    (isProjectsPage && item.label === "My Projects") ? "font-bold text-red-500" : ""
+                  } ${isMenuOpen ? `slide-in delay-${index + 1}` : ""}`}
                   onMouseEnter={(e) => handleMouseEnter(index, e)}
                   style={{ position: "relative", zIndex: 1 }}
                 >
                   <a
                     href={
-                      index === 0
-                        ? "#"
-                        : `#${item.label.replace(/\s+/g, "-").toLowerCase()}`
-                    } // Primer elemento redirige a "/"
+                      item.label === "My Projects"
+                        ? "/projects"
+                        : `/#${item.anchor}`
+                    }
                     className="block"
                     onClick={() => {
-                      onMenuClick(item.id === 0 ? null : item.id); // Llama a la función para expandir el contenedor
-                      toggleMenu(); // Cierra el menú
+                      onMenuClick(item.id === 0 ? null : item.id);
+                      toggleMenu();
                     }}
                   >
                     <div
@@ -173,9 +177,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                       style={{ position: "relative", zIndex: 1 }}
                     >
                       <div
-                        className={`bg-black py-6 contenedor-deformidad-${
-                          index + 1
-                        }`}
+                        className={`bg-black py-6 contenedor-deformidad-${index + 1}`}
                         style={{ position: "relative", zIndex: 1 }}
                       ></div>
                     </div>

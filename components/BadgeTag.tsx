@@ -26,8 +26,9 @@ const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelect
       onClick={onClick}
       style={{
         display: "inline-block",
-        padding: "3.5rem 6.3rem",
-        borderRadius: "4rem",
+        padding: "3rem 3rem",
+        borderRadius: "4.5rem",
+        maxWidth: "300px",
         background: isSelected ? "white" : "green",
         color: isSelected ? "#222" : "#222",
         fontWeight: "bolder",
@@ -41,6 +42,11 @@ const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelect
         maskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
         maskComposite: "exclude",
         WebkitMaskComposite: "destination-out",
+        // menor separación entre el texto vertical y horizontal
+        lineHeight: "1",
+        // Agregar sombra al texto
+        textShadow: "0 0 2px #222",
+
         ...style,
       }}
     >

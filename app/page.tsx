@@ -128,9 +128,6 @@ export default function Home() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   const handleToggleExpand = (id: number | null) => {
-    if(id == 1 ){
-      return; 
-    }
     setExpandedId(expandedId === id ? null : id); // Alterna entre expandir y colapsar
   };
 
@@ -167,7 +164,7 @@ export default function Home() {
           className="absolute inset-0 bg-black opacity-50"
           style={{ zIndex: -1 }}
         ></div>
-        <Header onMenuClick={handleToggleExpand} />
+        <Header onMenuClick={(id: number | null) => id !== 1 && handleToggleExpand(id)} />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
             src={"/header-bg.webp"}

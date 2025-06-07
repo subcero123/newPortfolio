@@ -60,6 +60,7 @@
   overflow: hidden;
 }
 
+
 /* Navegación de badges */
 .badgesContainer {
   display: flex;
@@ -74,7 +75,7 @@
 
 .navButton {
   position: absolute;
-  right: 39%;
+  left: 32%;
   background: none;
   border: none;
   color: #fff;
@@ -107,6 +108,36 @@
   text-align: center;
   z-index: 5;
   background-color: rgba(0, 0, 0);
+}
+
+.projectImagesContainer{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    min-width: 40%;
+    z-index: 5;
+}
+
+.projectImage{
+    aspect-ratio: 16/9;
+    border: 4px solid #d40707;
+}
+
+.projectDescriptionContainer{
+  position: absolute;
+  top: 55%;
+  right: 5%;
+  rotate: 4deg 0 0;
+  background-color: black;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  border-radius: 2rem;
+  z-index: 5;
+  max-width: 35%;
+  min-width: 35%;
+  min-height: 30%;
+  max-height: 30%;
 }
 
 .projectTitle {

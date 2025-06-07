@@ -19,7 +19,7 @@ export default function ProjectsPage() {
       title: "Agency Website",
       technologies: ["React", "Next.js"],
       imgs: ["/project-1.webp"],
-      description: "Modern agency website with responsive design and interactive elements.",
+      description: "I built a web agency landing page for my company using Next.js and React, focusing on SEO optimization, performance, and visual appeal. The goal was to consolidate my knowledge in these technologies and improve my skills in SEO optimization.",
       webpage: "https://example.com/agency"
     },
     {
@@ -27,7 +27,7 @@ export default function ProjectsPage() {
       title: "Educational Page",
       technologies: ["AstroJs", "Node.js", "Python"],
       imgs: ["/project-2.webp"],
-      description: "Educational platform for online learning with interactive courses.",
+      description: "Redesigned and modernized a university website using Astro, ensuring compatibility with legacy apps through code refactoring. The site is mobile/desktop optimized and built for easy future maintenance and content updates.",
       webpage: "https://example.com/education"
     },
     {
@@ -35,7 +35,7 @@ export default function ProjectsPage() {
       title: "Private App",
       technologies: ["PHP", "MySQL", "Laravel"],
       imgs: ["/project-3.webp"],
-      description: "Production management system for manufacturing industry.",
+      description: "Developed a web app for a private company specializing in medicine packaging, covering all stages of their production process. The app includes performance metrics to identify issues and areas for improvement. It’s actively maintained and continuously evolving with new features.",
       webpage: "https://example.com/production"
     },
     {
@@ -43,7 +43,7 @@ export default function ProjectsPage() {
       title: "HR System",
       technologies: ["Laravel", "PHP", "MySQL"],
       imgs: ["/project-4.webp"],
-      description: "Complete HR solution for employee management and payroll.",
+      description: "Developed an HR application covering key processes from employee attendance, integrated with ZKTeco devices via API, to payroll generation with calculations and simulations for salaries, vacations, and more.",
       webpage: "https://example.com/hrms"
     },
     {
@@ -51,7 +51,7 @@ export default function ProjectsPage() {
       title: "Car Rental App",
       technologies: ["Angular", "Django", "AWS"],
       imgs: ["/project-5.webp"],
-      description: "Car rental application with booking system and payment integration.",
+      description: "Built a web app for a luxury car rental and security company, using AWS for optimization and secure data handling. Features include secure auth, car quoting, maintenance and trip tracking, vehicle location, and service performance metrics.",
       webpage: "https://example.com/carrental"
     },
     {
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       title: "Form Builder",
       technologies: ["VueJS", "Laravel", "Fargate"],
       imgs: ["/project-6.webp"],
-      description: "Dynamic form builder for data collection and analysis.",
+      description: "Built a customizable form builder using Vue.js with a strong focus on UI/UX. Integrated with AWS Fargate for deployment as a new service for a Japanese company. Designed to handle thousands of responses efficiently, with well-structured data storage for future analysis.",
       webpage: "https://example.com/formbuilder"
     },
   ];
@@ -180,6 +180,35 @@ export default function ProjectsPage() {
               </>
             )}
           </div>
+
+          {/* Contenedor para las imagenes del proyecto */}
+          <div className={styles.projectImagesContainer}>
+            {selectedBadge !== null && (
+              <div className={styles.projectImages}>
+                {projects[selectedBadge].imgs.map((img, index) => (
+                  <Image
+                    key={index}
+                    src={img}
+                    width={768}
+                    height={576}
+                    alt={`Project Image ${index + 1}`}
+                    className={styles.projectImage}
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Contenedor para la descripción del proyecto */}
+          <div className={styles.projectDescriptionContainer}>
+            {selectedBadge !== null && (
+              <div className={styles.projectDescriptionText}>
+                <p>{projects[selectedBadge].description}</p>
+              </div>
+            )}
+          </div>
+
         </div>
       </main>
       <footer>

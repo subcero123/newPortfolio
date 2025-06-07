@@ -12,6 +12,9 @@ export default function ProjectsPage() {
   // Estado para la chapa seleccionada
   const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
   const [badgeOffset, setBadgeOffset] = useState(0);
+  // Estados para las animaciones
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [pendingBadge, setPendingBadge] = useState<number | null>(null);
 
   const projects = [
     {
@@ -79,6 +82,20 @@ export default function ProjectsPage() {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  const handleBadgeClick = (badgeIdx: number) => {
+    if (selectedBadge === badgeIdx) return;
+    
+    setIsAnimating(true);
+    setPendingBadge(badgeIdx);
+    setSelectedBadge(badgeIdx);
+    // Después de 0.75s (fade out), cambiar el contenido y hacer fade in
+    setTimeout(() => {
+      
+      setIsAnimating(false);
+      setPendingBadge(null);
+    }, 250);
+  };
+
   return (
     <div className={styles.pageContainer}>
       <main className={styles.mainContent}>
@@ -138,7 +155,7 @@ export default function ProjectsPage() {
                   positionIndex={idx}
                   isSelected={selectedBadge === badgeIdx}
                   onClick={
-                    isClickable ? () => setSelectedBadge(badgeIdx) : undefined
+                    isClickable ? () => handleBadgeClick(badgeIdx) : undefined
                   }
                 />
               );
@@ -156,7 +173,7 @@ export default function ProjectsPage() {
           {/* Contenedor para la información del proyecto */}
           <div className={styles.projectInfoPanel}>
             {selectedBadge !== null ? (
-              <>
+              <div className={`${styles.projectContent} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}>
                 <h2 className={styles.projectTitle}>TITLE</h2>
                 <hr className={styles.mediumHR} />
                 <p className={styles.projectDescription}>{projects[selectedBadge].title}</p>
@@ -169,15 +186,15 @@ export default function ProjectsPage() {
                 </p>
                 <hr className={styles.mediumHR} />
                 <hr className={styles.bigHR} />
-              </>
+              </div>
             ) : (
-              <>
+              <div className={`${styles.projectContent} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}>
                 <h2 className={styles.projectTitle}>Select a project</h2>
                 <hr className={styles.mediumHR} />
                 <p className={styles.projectDescription}>Click on a badge to view project details</p>
                 <hr className={styles.mediumHR} />
                 <hr className={styles.bigHR} />
-              </>
+              </div>
             )}
           </div>
 
@@ -192,7 +209,7 @@ export default function ProjectsPage() {
                     width={768}
                     height={576}
                     alt={`Project Image ${index + 1}`}
-                    className={styles.projectImage}
+                    className={`${styles.projectImage} ${styles.projectImageAnimated} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
                     loading="lazy"
                   />
                 ))}
@@ -203,7 +220,7 @@ export default function ProjectsPage() {
           {/* Contenedor para la descripción del proyecto */}
           <div className={styles.projectDescriptionContainer}>
             {selectedBadge !== null && (
-              <div className={styles.projectDescriptionText}>
+              <div className={`${styles.projectDescriptionText} ${styles.projectDescriptionAnimated} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}>
                 <p>{projects[selectedBadge].description}</p>
               </div>
             )}

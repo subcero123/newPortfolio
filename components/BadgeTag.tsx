@@ -25,47 +25,49 @@ const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelect
     <div
       onClick={onClick}
       style={{
-        display: "inline-block",
-        padding: "3rem 3rem",
-        borderRadius: "4.5rem",
-        maxWidth: "300px",
-        background: isSelected ? "white" : "green",
-        color: isSelected ? "#222" : "#222",
-        fontWeight: "bolder",
-        fontSize: "2rem",
-        transform: `rotate(${rotation}deg) scale(${isSelected ? 1.2 : 1}) translateX(${pos.translateX}px)`,
-        position: "relative",
-        top: pos.top,
-        cursor: "pointer",
-        transition: "all 0.2s cubic-bezier(.4,2,.6,1)",
-        WebkitMaskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
-        maskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
-        maskComposite: "exclude",
-        WebkitMaskComposite: "destination-out",
-        // menor separación entre el texto vertical y horizontal
-        lineHeight: "1",
-        // Agregar sombra al texto
-        textShadow: "0 0 2px #222",
-
-        ...style,
+      display: "inline-block",
+      padding: "3rem 3rem",
+      borderRadius: "4.5rem",
+      maxWidth: "300px",
+      background: isSelected ? "white" : "#6CFF0D",
+      color: isSelected ? "#222" : "#222",
+      fontWeight: "bolder",
+      fontSize: "2rem",
+      // Usar scaleY y scaleX solo hacia la derecha
+      transform: `
+        rotate(${rotation}deg)
+        scaleY(${isSelected ? 1.3 : 1})
+        scaleX(${isSelected ? 1.3 : 1})
+        translateX(${pos.translateX - -(isSelected ? 0.2 * 100 : 0)}px)
+      `,
+      position: "relative",
+      top: pos.top,
+      cursor: "pointer",
+      transition: "all 0.2s cubic-bezier(.4,2,.6,1)",
+      WebkitMaskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
+      maskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
+      maskComposite: "exclude",
+      WebkitMaskComposite: "destination-out",
+      lineHeight: "1",
+      textShadow: "0 0 2px #222",
+      ...style,
+      transformOrigin: "left center", // Importante: el origen de la transformación es la izquierda
       }}
     >
       {/* Orificio a la izquierda, transparente */}
       <span
-        style={{
-          position: "absolute",
-          left: "1.2rem",
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: "1.1rem",
-          height: "1.1rem",
-          background: "transparent",
-          borderRadius: "50%",
-          border: "2px solid #888",
-          boxShadow: "0 0 2px #222",
-          display: "inline-block",
-          pointerEvents: "none",
-        }}
+      style={{
+        position: "absolute",
+        left: "1.2rem",
+        top: "50%",
+        transform: "translateY(-50%)",
+        width: "1.1rem",
+        height: "1.1rem",
+        background: "transparent",
+        borderRadius: "50%",
+        display: "inline-block",
+        pointerEvents: "none",
+      }}
       />
       {text}
     </div>

@@ -76,7 +76,7 @@
 
 .navButton {
   position: absolute;
-  left: 32%;
+  left: 31%;
   background: none;
   border: none;
   color: #fff;
@@ -250,3 +250,17 @@
   display: block;
   opacity: 1;
 }
+
+@keyframes slideBadge {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(30px) rotate(15deg);
+  }
+}
+
+.animate-badge {
+  animation: slideBadge 0.3s ease forwards;
+}
+

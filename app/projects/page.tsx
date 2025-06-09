@@ -3,14 +3,14 @@
 import type React from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BadgeTag from "@/components/BadgeTag";
 import styles from "./projects.module.css";
 
 export default function ProjectsPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
   // Estado para la chapa seleccionada
-  const [selectedBadge, setSelectedBadge] = useState<number | null>(null);
+  const [selectedBadge, setSelectedBadge] = useState<number | null>(2);
   const [badgeOffset, setBadgeOffset] = useState(0);
   // Estados para las animaciones
   const [isAnimating, setIsAnimating] = useState(false);
@@ -71,6 +71,32 @@ export default function ProjectsPage() {
   const badges = projects.map(project => ({
     text: project.title.toUpperCase()
   }));
+
+  // Mapeo de hashtags a índices de proyectos
+  const hashtagToProject: { [key: string]: number } = {
+    'agency-website': 0,
+    'educational-page': 1,
+    'private-production-app': 2,
+    'hr-management-system': 3,
+    'car-rental-app': 4,
+    'form-builder-data-collection': 5
+  };
+
+  // Efecto para detectar hashtag en la URL
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // Remover el #
+    const projectIndex = hashtagToProject[hash];
+    
+    if (projectIndex !== undefined) {
+      // Seleccionar el proyecto
+      setSelectedBadge(projectIndex);
+      
+      // Calcular el offset para que el proyecto esté en el centro (posición 3, rotación 0)
+      const centerPosition = 3;
+      const newOffset = (projectIndex - centerPosition + badges.length) % badges.length;
+      setBadgeOffset(newOffset);
+    }
+  }, [badges.length]);
 
   // Rotaciones fijas según la posición de visualización
   const rotations = [-15, -10, -5, 0, 5, 10, 15, 10, 5, 0, -5, -10, -15];

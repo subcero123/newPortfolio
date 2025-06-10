@@ -15,6 +15,10 @@ export default function ProjectsPage() {
   // Estados para las animaciones
   const [isAnimating, setIsAnimating] = useState(false);
   const [pendingBadge, setPendingBadge] = useState<number | null>(null);
+  const [animationTrigger, setAnimationTrigger] = useState(0);
+  const [isScrollAnimating, setIsScrollAnimating] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  const [previousPositions, setPreviousPositions] = useState<{ [key: string]: number }>({});
 
   const projects = [
     {
@@ -111,6 +115,20 @@ export default function ProjectsPage() {
   const canScrollUp = badgeOffset > 0;
   const canScrollDown = badgeOffset + visibleCount < badges.length;
 
+  // Efecto para actualizar posiciones cuando no está animando
+  useEffect(() => {
+    if (!isScrollAnimating) {
+      const newPositions: { [key: string]: number } = {};
+      Array.from({ length: visibleCount }).forEach((_, visibleIndex) => {
+        const index = (badgeOffset + visibleIndex) % badges.length;
+        const badge = badges[index];
+        const badgeKey = `${badge.text}-${index}`;
+        newPositions[badgeKey] = visibleIndex;
+      });
+      setPreviousPositions(newPositions);
+    }
+  }, [badgeOffset, isScrollAnimating, badges, visibleCount]);
+
   const handleToggleExpand = (id: number | null) => {
     setExpandedId(expandedId === id ? null : id);
   };
@@ -124,7 +142,7 @@ export default function ProjectsPage() {
     setTimeout(() => {
       setIsAnimating(false);
       setPendingBadge(null);
-    }, 100);
+    }, 150);
   };
 
   return (
@@ -167,10 +185,20 @@ export default function ProjectsPage() {
         <div className={styles.contentContainer}>
           {/* Flecha arriba */}
             <button
-              onClick={() => setBadgeOffset((prev) => (prev + 1) % badges.length)}
+              onClick={() => {
+                if (isScrollAnimating) return;
+                setIsScrollAnimating(true);
+                setScrollDirection('up');
+                setBadgeOffset((prev) => (prev + 1) % badges.length);
+                setAnimationTrigger(prev => prev + 1);
+                setTimeout(() => {
+                  setIsScrollAnimating(false);
+                  setScrollDirection(null);
+                }, 400);
+              }}
               className={`${styles.navButton} ${styles.upButton}`}
               aria-label="Ver anteriores"
-              
+              disabled={isScrollAnimating}
             >
               <Image
                 src="/arrow.svg"
@@ -182,36 +210,78 @@ export default function ProjectsPage() {
             </button>
 
           {/* Semi-círculo de chapas centrado */}
-          <div className={styles.badgesContainer}>
+          <div className={`${styles.badgesContainer} ${isScrollAnimating ? styles.badgesScrolling : ''}`} key={`container-${animationTrigger}`}>
             {Array.from({ length: visibleCount }).map((_, visibleIndex) => {
               const index = (badgeOffset + visibleIndex) % badges.length;
               const badge = badges[index];
               const rotation = rotations[visibleIndex];
               const isClickable = rotation !== -15 && rotation !== 10;
+              
+              // Track position changes for animation
+              const badgeKey = `${badge.text}-${index}`;
+              const currentPosition = visibleIndex;
+              const previousPosition = previousPositions[badgeKey];
+
+              // Create wrapper div for animation classes
+              let animationClass = '';
+              let wrapperStyle = {};
+              
+              if (isScrollAnimating && scrollDirection) {
+                if (scrollDirection === 'up' && visibleIndex === 0) {
+                  animationClass = styles.badgeEntering;
+                } else if (scrollDirection === 'down' && visibleIndex === visibleCount - 1) {
+                  animationClass = styles.badgeEntering;
+                } else if (isScrollAnimating && previousPosition !== undefined && previousPosition !== currentPosition) {
+                  // Only animate middle elements (skip first and last)
+                  if (visibleIndex !== 0 && visibleIndex !== visibleCount - 1) {
+                    animationClass = styles.badgeTransitioning;
+                    // Set CSS custom properties for position animation
+                    wrapperStyle = {
+                      '--start-position': `${(previousPosition - currentPosition) * 60}px`,
+                      '--end-position': '0px',
+                      '--start-rotation': `${rotations[previousPosition]}deg`,
+                      '--end-rotation': `${rotation}deg`,
+                    };
+                  }
+                }
+              }
 
               return (
-                <BadgeTag
-                  key={badge.text}
-                  text={badge.text}
-                  rotation={rotation}
-                  positionIndex={visibleIndex}
-                  isSelected={selectedBadge === index}
-                  onClick={
-                    isClickable ? () => handleBadgeClick(index) : undefined
-                  }
-                />
+                <div 
+                  key={`wrapper-${badge.text}-${visibleIndex}-${animationTrigger}`} 
+                  className={animationClass}
+                  style={wrapperStyle}
+                >
+                  <BadgeTag
+                    key={`${badge.text}-${visibleIndex}-${animationTrigger}`}
+                    text={badge.text}
+                    rotation={rotation}
+                    positionIndex={visibleIndex}
+                    isSelected={selectedBadge === index}
+                    onClick={
+                      isClickable ? () => handleBadgeClick(index) : undefined
+                    }
+                  />
+                </div>
               );
             })}
           </div>
           {/* Flecha abajo */}
           <button
-            onClick={() =>
-              setBadgeOffset(
-                (prev) => (prev - 1 + badges.length) % badges.length
-              )
-            }
+            onClick={() => {
+              if (isScrollAnimating) return;
+              setIsScrollAnimating(true);
+              setScrollDirection('down');
+              setBadgeOffset((prev) => (prev - 1 + badges.length) % badges.length);
+              setAnimationTrigger(prev => prev + 1);
+              setTimeout(() => {
+                setIsScrollAnimating(false);
+                setScrollDirection(null);
+              }, 400);
+            }}
             className={`${styles.navButton} ${styles.downButton}`}
             aria-label="Ver siguientes"
+            disabled={isScrollAnimating}
           >
             <Image
               src="/arrow.svg"

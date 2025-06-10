@@ -95,6 +95,76 @@
   margin-top: 8px;
 }
 
+/* Animation for badges when scrolling */
+.badgesScrolling {
+  animation: badgeTransition 0.4s ease-in-out;
+}
+
+@keyframes badgeTransition {
+  0% {
+    transform: translateY(-20px) scale(0.9);
+  }
+  30% {
+    transform: translateY(-10px) scale(0.95);
+  }
+  70% {
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* Individual badge animations for entering/exiting */
+.badgeEntering {
+  animation: badgeSlideIn 0.4s ease-out forwards;
+}
+
+.badgeExiting {
+  animation: badgeSlideOut 0.4s ease-in forwards;
+}
+
+@keyframes badgeSlideIn {
+  0% {
+    transform: translateY(-80px) rotate(var(--badge-rotation, 0deg)) scale(0.7);
+  }
+  50% {
+    transform: translateY(-20px) rotate(var(--badge-rotation, 0deg)) scale(0.9);
+  }
+  100% {
+    transform: translateY(0) rotate(var(--badge-rotation, 0deg)) scale(1);
+  }
+}
+
+@keyframes badgeSlideOut {
+  0% {
+    transform: translateY(0) rotate(var(--badge-rotation, 0deg)) scale(1);
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--badge-rotation, 0deg)) scale(0.95);
+  }
+  100% {
+    transform: translateY(50px) rotate(var(--badge-rotation, 0deg)) scale(0.8);
+  }
+}
+
+/* Smooth position transitions for all badges */
+.badgeTransitioning {
+  animation: badgePositionTransition 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes badgePositionTransition {
+  0% {
+    transform: translateY(var(--start-position, 0px)) rotate(var(--start-rotation, 0deg)) scale(var(--start-scale, 1));
+  }
+  50% {
+    transform: translateY(calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)) rotate(calc(var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5)) scale(1.05);
+  }
+  100% {
+    transform: translateY(var(--end-position, 0px)) rotate(var(--end-rotation, 0deg)) scale(var(--end-scale, 1));
+  }
+}
+
 /* Panel de información del proyecto */
 .projectInfoPanel {
   position: absolute;

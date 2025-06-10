@@ -21,6 +21,9 @@ const badgePositions = [
 
 const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelected = false, onClick, positionIndex = 0 }) => {
   const pos = badgePositions[positionIndex] || { translateX: 0, top: 0 };
+  
+  // Añadir un pequeño delay escalonado para efecto visual más natural
+  const animationDelay = positionIndex * 0.03;
 
   return (
     <div
@@ -39,13 +42,14 @@ const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelect
           rotate(${rotation}deg)
           scaleY(${isSelected ? 1.3 : 1})
           scaleX(${isSelected ? 1.3 : 1})
-          translateX(${pos.translateX - -(isSelected ? 0.2 * 100 : 0)}px)
+          translateX(${pos.translateX + (isSelected ? 20 : 0)}px)
         `,
         position: "relative",
         top: pos.top,
         cursor: "pointer",
-        // Transición suave hacia la nueva posición
-        transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        // Transición suave para todas las propiedades incluyendo posición
+        transition: "all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        transitionDelay: `${animationDelay}s`,
         WebkitMaskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
         maskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
         maskComposite: "exclude",

@@ -170,6 +170,11 @@ export default function ProjectsPage() {
           className={`${styles.bgImage} ${styles.patternBg}`}
           style={{ backgroundImage: "url(/repeating_pattern.png)" }}
         />
+        {/* dlc_ballchain_bg.png delante del repeating pattern pero detrás de las badges */}
+        <div
+          className={`${styles.bgImage} ${styles.ballchainBg}`}
+          style={{ backgroundImage: "url(/dlc_ballchain_bg.png)" }}
+        />
         {/* header-bg.webp siempre encima */}
         <div className={styles.headerBgContainer}>
           <Image
@@ -189,12 +194,22 @@ export default function ProjectsPage() {
                 if (isScrollAnimating) return;
                 setIsScrollAnimating(true);
                 setScrollDirection('up');
+                // Capturar posiciones ANTES de cambiar el offset
+                const currentPositions: { [key: string]: number } = {};
+                Array.from({ length: visibleCount }).forEach((_, visibleIndex) => {
+                  const index = (badgeOffset + visibleIndex) % badges.length;
+                  const badge = badges[index];
+                  const badgeKey = `${badge.text}-${index}`;
+                  currentPositions[badgeKey] = visibleIndex;
+                });
+                setPreviousPositions(currentPositions);
+                
                 setBadgeOffset((prev) => (prev + 1) % badges.length);
                 setAnimationTrigger(prev => prev + 1);
                 setTimeout(() => {
                   setIsScrollAnimating(false);
                   setScrollDirection(null);
-                }, 400);
+                }, 500);
               }}
               className={`${styles.navButton} ${styles.upButton}`}
               aria-label="Ver anteriores"
@@ -231,15 +246,16 @@ export default function ProjectsPage() {
                   animationClass = styles.badgeEntering;
                 } else if (scrollDirection === 'down' && visibleIndex === visibleCount - 1) {
                   animationClass = styles.badgeEntering;
-                } else if (isScrollAnimating && previousPosition !== undefined && previousPosition !== currentPosition) {
+                } else if (previousPosition !== undefined && previousPosition !== currentPosition) {
                   // Only animate middle elements (skip first and last)
                   if (visibleIndex !== 0 && visibleIndex !== visibleCount - 1) {
                     animationClass = styles.badgeTransitioning;
-                    // Set CSS custom properties for position animation
+                    // Calculate the exact position difference for smooth animation
+                    const positionDifference = (previousPosition - currentPosition) * 60; // 60px gap between badges
                     wrapperStyle = {
-                      '--start-position': `${(previousPosition - currentPosition) * 60}px`,
+                      '--start-position': `${positionDifference}px`,
                       '--end-position': '0px',
-                      '--start-rotation': `${rotations[previousPosition]}deg`,
+                      '--start-rotation': `${rotations[previousPosition] || 0}deg`,
                       '--end-rotation': `${rotation}deg`,
                     };
                   }
@@ -272,6 +288,16 @@ export default function ProjectsPage() {
               if (isScrollAnimating) return;
               setIsScrollAnimating(true);
               setScrollDirection('down');
+              // Capturar posiciones ANTES de cambiar el offset
+              const currentPositions: { [key: string]: number } = {};
+              Array.from({ length: visibleCount }).forEach((_, visibleIndex) => {
+                const index = (badgeOffset + visibleIndex) % badges.length;
+                const badge = badges[index];
+                const badgeKey = `${badge.text}-${index}`;
+                currentPositions[badgeKey] = visibleIndex;
+              });
+              setPreviousPositions(currentPositions);
+              
               setBadgeOffset((prev) => (prev - 1 + badges.length) % badges.length);
               setAnimationTrigger(prev => prev + 1);
               setTimeout(() => {

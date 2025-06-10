@@ -15,8 +15,8 @@ const badgePositions = [
   { translateX: 40, top: 20 },
   { translateX: 0, top: 40 },
   { translateX: -50, top: 60 },
-  { translateX: -120, top: 80 },
-  { translateX: -230, top: 110 },
+  { translateX: -90, top: 80 },
+  { translateX: -140, top: 110 },
 ];
 
 const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelected = false, onClick, positionIndex = 0 }) => {
@@ -42,7 +42,7 @@ const BadgeTag: React.FC<BadgeTagProps> = ({ text, rotation = 0, style, isSelect
           rotate(${rotation}deg)
           scaleY(${isSelected ? 1.3 : 1})
           scaleX(${isSelected ? 1.3 : 1})
-          translateX(${pos.translateX + (isSelected ? 20 : 0)}px)
+          translateX(${pos.translateX + (isSelected ? 0 : 0)}px)
         `,
         position: "relative",
         top: pos.top,

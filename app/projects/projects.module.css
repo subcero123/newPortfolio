@@ -36,6 +36,16 @@
   z-index: 1;
 }
 
+.ballchainBg {
+  position: absolute;
+  
+  
+  z-index: 2;
+  /* Propiedades para mover y posicionar */
+  transform: translateX(-52%) translateY(0);
+  opacity: 1;
+}
+
 .headerBgContainer {
   position: absolute;
   top: 0;

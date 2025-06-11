@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import styles from "./BadgeTag.module.css";
 
 interface BadgeTagProps {
   text: string;
@@ -10,15 +11,65 @@ interface BadgeTagProps {
   positionIndex?: number;
 }
 
-// Define posiciones personalizadas para cada badge
-const badgePositions = [
-  { translateX: 70, top: 0 },
-  { translateX: 15, top: -10 },
-  { translateX: -15, top: 15 },
-  { translateX: -30, top: 50 },
-  { translateX: -80, top: 80 },
-  { translateX: -140, top: 110 },
-];
+// Define posiciones personalizadas para cada badge según viewport
+const badgePositions = {
+  // Desktop 1440px+
+  desktop: [
+    { translateX: 70, top: 0 },
+    { translateX: 15, top: -10 },
+    { translateX: -15, top: 15 },
+    { translateX: -30, top: 50 },
+    { translateX: -80, top: 80 },
+    { translateX: -140, top: 110 },
+  ],
+  // Laptop Normal 1024px-1439px
+  laptop: [
+    { translateX: 60, top: 0 },
+    { translateX: 12, top: -8 },
+    { translateX: -12, top: 12 },
+    { translateX: -25, top: 40 },
+    { translateX: -65, top: 65 },
+    { translateX: -115, top: 90 },
+  ],
+  // Tablet Landscape 768px-1023px
+  tabletLandscape: [
+    { translateX: 50, top: 0 },
+    { translateX: 10, top: -6 },
+    { translateX: -10, top: 10 },
+    { translateX: -20, top: 30 },
+    { translateX: -50, top: 50 },
+    { translateX: -90, top: 70 },
+  ],
+  // Tablet Portrait 576px-767px
+  tabletPortrait: [
+    { translateX: 40, top: 0 },
+    { translateX: 8, top: -5 },
+    { translateX: -8, top: 8 },
+    { translateX: -15, top: 25 },
+    { translateX: -40, top: 40 },
+    { translateX: -70, top: 55 },
+  ],
+  // Mobile Small hasta 575px
+  mobile: [
+    { translateX: 30, top: 0 },
+    { translateX: 6, top: -4 },
+    { translateX: -6, top: 6 },
+    { translateX: -12, top: 20 },
+    { translateX: -30, top: 30 },
+    { translateX: -50, top: 40 },
+  ],
+};
+
+// Función para obtener el viewport actual
+const getViewportType = () => {
+  if (typeof window === "undefined") return "desktop";
+  const width = window.innerWidth;
+  if (width <= 575) return "mobile";
+  if (width <= 767) return "tabletPortrait";
+  if (width <= 1023) return "tabletLandscape";
+  if (width <= 1439) return "laptop";
+  return "desktop";
+};
 
 const bounceKeyframes = `
   @keyframes bounceScale {
@@ -42,7 +93,9 @@ const BadgeTag: React.FC<BadgeTagProps> = ({
   onClick,
   positionIndex = 0,
 }) => {
-  const pos = badgePositions[positionIndex] || { translateX: 0, top: 0 };
+  const viewportType = getViewportType();
+  const positions = badgePositions[viewportType as keyof typeof badgePositions];
+  const pos = positions[positionIndex] || { translateX: 0, top: 0 };
 
   // Añadir un pequeño delay escalonado para efecto visual más natural
   const animationDelay = positionIndex * 0.03;
@@ -104,48 +157,17 @@ const BadgeTag: React.FC<BadgeTagProps> = ({
   return (
     <div
       onClick={onClick}
+      className={`${styles.badge} ${isSelected ? styles.selected : styles.unselected}`}
       style={{
-        display: "inline-block",
-        padding: "3rem 3rem",
-        borderRadius: "4.5rem",
-        maxWidth: "300px",
-        background: isSelected ? "white" : "#6CFF0D",
-        color: isSelected ? "#222" : "#222",
-        fontWeight: "bolder",
-        fontSize: "2rem",
         animation: isSelected ? `${animName} 0.35s ease forwards` : undefined,
         transform: `rotate(${rotation}deg) translateX(${pos.translateX}px)`,
-
-        position: "relative",
         top: pos.top,
-        cursor: "pointer",
-    
-        transformOrigin: "left top", // Scale desde la esquina derecha inferior
         transitionDelay: `${animationDelay}s`,
-        WebkitMaskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
-        maskImage: `radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem)`,
-        maskComposite: "exclude",
-        WebkitMaskComposite: "destination-out",
-        lineHeight: "1",
-        textShadow: "0 0 2px #222",
         ...style,
       }}
     >
       {/* Orificio a la izquierda, transparente */}
-      <span
-        style={{
-          position: "absolute",
-          left: "1.2rem",
-          top: "50%",
-          transform: "translateY(-50%)",
-          width: "1.1rem",
-          height: "1.1rem",
-          background: "transparent",
-          borderRadius: "50%",
-          display: "inline-block",
-          pointerEvents: "none",
-        }}
-      />
+      <span className={styles.badgeHole} />
       {text}
     </div>
   );

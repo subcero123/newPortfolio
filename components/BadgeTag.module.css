@@ -1,0 +1,116 @@
+/* Estilos base para BadgeTag - 1440px en adelante */
+.badge {
+  display: inline-block;
+  padding: 3rem 3rem;
+  border-radius: 4.5rem;
+  max-width: 300px;
+  font-weight: bolder;
+  font-size: 2rem;
+  position: relative;
+  cursor: pointer;
+  transform-origin: left top;
+  -webkit-mask-image: radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem);
+  mask-image: radial-gradient(circle at 1.8rem center, transparent 0.55rem, black 0.55rem);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  line-height: 1;
+  text-shadow: 2px 2px 2px #222;
+}
+
+.badge.selected {
+  background: white;
+  color: #222;
+}
+
+.badge.unselected {
+  background: #6CFF0D;
+  color: #222;
+}
+
+.badgeHole {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.1rem;
+  height: 1.1rem;
+  background: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  pointer-events: none;
+}
+
+/* Laptop Normal (1024px - 1439px) */
+@media (max-width: 1439px) and (min-width: 1024px) {
+  .badge {
+    padding: 3rem 2.5rem;
+    border-radius: 3.5rem;
+    max-width: 300px;
+    font-size: 1.6rem;
+    -webkit-mask-image: radial-gradient(circle at 1.4rem center, transparent 0.45rem, black 0.45rem);
+    mask-image: radial-gradient(circle at 1.4rem center, transparent 0.45rem, black 0.45rem);
+  }
+
+  .badgeHole {
+    left: 1rem;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .badge {
+    padding: 2rem 2rem;
+    border-radius: 3rem;
+    max-width: 200px;
+    font-size: 1.4rem;
+    -webkit-mask-image: radial-gradient(circle at 1.2rem center, transparent 0.4rem, black 0.4rem);
+    mask-image: radial-gradient(circle at 1.2rem center, transparent 0.4rem, black 0.4rem);
+    text-shadow: 1px 1px 1px #222;
+  }
+
+  .badgeHole {
+    left: 0.8rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}
+
+/* Tablet Portrait (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .badge {
+    padding: 1.5rem 1.5rem;
+    border-radius: 2.5rem;
+    max-width: 160px;
+    font-size: 1.2rem;
+    -webkit-mask-image: radial-gradient(circle at 1rem center, transparent 0.35rem, black 0.35rem);
+    mask-image: radial-gradient(circle at 1rem center, transparent 0.35rem, black 0.35rem);
+    text-shadow: 1px 1px 1px #222;
+  }
+
+  .badgeHole {
+    left: 0.7rem;
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+}
+
+/* Mobile Small (hasta 575px) */
+@media (max-width: 575px) {
+  .badge {
+    padding: 1.2rem 1.2rem;
+    border-radius: 2rem;
+    max-width: 140px;
+    font-size: 1rem;
+    -webkit-mask-image: radial-gradient(circle at 0.8rem center, transparent 0.3rem, black 0.3rem);
+    mask-image: radial-gradient(circle at 0.8rem center, transparent 0.3rem, black 0.3rem);
+    text-shadow: 1px 1px 1px #222;
+  }
+
+  .badgeHole {
+    left: 0.5rem;
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+}

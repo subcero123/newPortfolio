@@ -105,58 +105,7 @@
   margin-top: 8px;
 }
 
-/* Animation for badges when scrolling */
-.badgesScrolling {
-  animation: badgeTransition 0.4s ease-in-out;
-}
 
-@keyframes badgeTransition {
-  0% {
-    transform: translateY(-20px) ;
-  }
-  30% {
-    transform: translateY(-10px) ;
-  }
-  70% {
-    transform: translateY(5px) ;
-  }
-  100% {
-    transform: translateY(0px) ;
-  }
-}
-
-/* Individual badge animations for entering/exiting */
-.badgeEntering {
-  animation: badgeSlideIn 0.4s ease-out forwards;
-}
-
-.badgeExiting {
-  animation: badgeSlideOut 0.4s ease-in forwards;
-}
-
-@keyframes badgeSlideIn {
-  0% {
-    transform: translateY(-80px) ;
-  }
-  50% {
-    transform: translateY(-20px) ;
-  }
-  100% {
-    transform: translateY(0) ;
-  }
-}
-
-@keyframes badgeSlideOut {
-  0% {
-    transform: translateY(0) ;
-  }
-  50% {
-    transform: translateY(10px) ;
-  }
-  100% {
-    transform: translateY(50px) ;
-  }
-}
 
 /* Smooth position transitions for all badges */
 .badgeTransitioning {
@@ -165,10 +114,10 @@
 
 @keyframes badgePositionTransition {
   0% {
-    transform: translateY(var(--start-position, 0px)) rotate(var(--start-rotation, 0deg)) scale(var(--start-scale, 1));
+    transform: translateY(var(--start-position, 0px)) rotate(var(--start-rotation, 0deg)) ;
   }
   50% {
-    transform: translateY(calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)) rotate(calc(var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5)) scale(1.05);
+    transform: translateY(calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)) rotate(calc(var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5)) ;
   }
   100% {
     transform: translateY(var(--end-position, 0px)) ;
@@ -331,16 +280,4 @@
   opacity: 1;
 }
 
-@keyframes slideBadge {
-  0% {
-    transform: translateX(0) rotate(0deg);
-  }
-  100% {
-    transform: translateX(30px) rotate(15deg);
-  }
-}
-
-.animate-badge {
-  animation: slideBadge 0.3s ease forwards;
-}
 

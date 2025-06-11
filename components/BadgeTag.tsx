@@ -13,9 +13,9 @@ interface BadgeTagProps {
 // Define posiciones personalizadas para cada badge
 const badgePositions = [
   { translateX: 70, top: 0 },
-  { translateX: 15, top: 10 },
-  { translateX: -15, top: 40 },
-  { translateX: -50, top: 60 },
+  { translateX: 15, top: -10 },
+  { translateX: -15, top: 15 },
+  { translateX: -30, top: 50 },
   { translateX: -80, top: 80 },
   { translateX: -140, top: 110 },
 ];

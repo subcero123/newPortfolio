@@ -142,7 +142,7 @@ export default function ProjectsPage() {
     setTimeout(() => {
       setIsAnimating(false);
       setPendingBadge(null);
-    }, 150);
+    }, 30);
   };
 
   return (
@@ -209,7 +209,7 @@ export default function ProjectsPage() {
                 setTimeout(() => {
                   setIsScrollAnimating(false);
                   setScrollDirection(null);
-                }, 500);
+                }, 250);
               }}
               className={`${styles.navButton} ${styles.upButton}`}
               aria-label="Ver anteriores"

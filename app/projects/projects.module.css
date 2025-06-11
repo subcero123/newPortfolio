@@ -38,13 +38,12 @@
 
 .ballchainBg {
   position: absolute;
-  
-  
   z-index: 2;
-  /* Propiedades para mover y posicionar */
-  left: -52%;
+  /* Propiedades para mover y posicionar - optimizado para 1910px */
+  left: -48%;
   top: 0;
   opacity: 1;
+  transform: translateX(0) translateY(0);
 }
 
 .headerBgContainer {
@@ -70,7 +69,6 @@
   justify-content: center;
   overflow: hidden;
 }
-
 
 /* Navegación de badges */
 .badgesContainer {
@@ -106,8 +104,6 @@
   margin-top: 8px;
 }
 
-
-
 /* Smooth position transitions for all badges */
 .badgeTransitioning {
   animation: badgePositionTransition 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -115,13 +111,21 @@
 
 @keyframes badgePositionTransition {
   0% {
-    transform: translateY(var(--start-position, 0px)) rotate(var(--start-rotation, 0deg)) ;
+    transform: translateY(var(--start-position, 0px))
+      rotate(var(--start-rotation, 0deg));
   }
   50% {
-    transform: translateY(calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)) rotate(calc(var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5)) ;
+    transform: translateY(
+        calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)
+      )
+      rotate(
+        calc(
+          var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5
+        )
+      );
   }
   100% {
-    transform: translateY(var(--end-position, 0px)) ;
+    transform: translateY(var(--end-position, 0px));
   }
 }
 
@@ -140,7 +144,6 @@
   text-align: center;
   z-index: 5;
   background-color: rgba(0, 0, 0);
-  
 }
 
 .projectInfoPanel.fadeOut {
@@ -149,31 +152,29 @@
 
 .projectInfoPanel.fadeIn {
   display: block;
-
 }
 
-.projectImagesContainer{
-    position: absolute;
-    top: 10%;
-    right: 2%;
-    width: 40%;
-    z-index: 5;
-    
+.projectImagesContainer {
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  width: 40%;
+  z-index: 5;
 }
 
-.projectImages{
-    border: 4px solid #d40707;
-    background-color: #d40707;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
+.projectImages {
+  border: 4px solid #d40707;
+  background-color: #d40707;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
 }
 
 .projectImage {
   aspect-ratio: 16/9;
 }
 
-.projectDescriptionContainer{
+.projectDescriptionContainer {
   position: absolute;
   top: 55%;
   right: 5%;
@@ -190,12 +191,10 @@
   max-height: 30vh;
 }
 
-
-
 .projectTitle {
   font-size: 2vw;
   font-weight: bold;
-  color: #6CFF0D;
+  color: #6cff0d;
 }
 
 .projectDescription {
@@ -211,12 +210,12 @@
   border: none;
 }
 
-.bigHR{
-    width: 100%;
-    height: 5px;
-    background-color: #ffffff;
-    margin: 0.6rem 0;
-    border: none;
+.bigHR {
+  width: 100%;
+  height: 5px;
+  background-color: #ffffff;
+  margin: 0.6rem 0;
+  border: none;
 }
 
 .projectTech {
@@ -332,62 +331,79 @@
     right: 1%;
   }
 
-  .ballchainBg{
-    transform: translateX(-50%) translateY(0%);
-    z-index: 99;
+  .ballchainBg {
+    left: -45%;
+    transform: translateX(0) translateY(0);
   }
 }
 
 /* Tablet Landscape (768px - 1023px) */
 @media (max-width: 1023px) and (min-width: 768px) {
+
+  .mainContent{
+    min-height: 0vh !important;
+    height: 90vh !important;
+  }
+
+  .contentContainer {
+    min-height: 0vh !important;
+    height: 90vh !important;
+  }
+
+
   .projectInfoPanel {
-    top: 15%;
-    left: 8%;
-    max-width: 42%;
-    min-width: 42%;
-    min-height: 30vh;
+    top: 10%;
+    left: 20%;
+    max-width: 35%;
+    min-width: 35%;
+    min-height: 20vh;
     padding: 2vh 1.5vw;
     border-radius: 2.5rem;
   }
 
   .projectImagesContainer {
-    top: 5%;
-    right: 0%;
+    top: 30%;
+    right: -2%;
     width: 50%;
   }
 
   .projectDescriptionContainer {
-    top: 45%;
-    right: 2%;
-    max-width: 45%;
-    min-width: 45%;
+    top: 55%;
+    right: 1%;
+    max-width: 38%;
+    min-width: 38%;
     min-height: 20vh;
     max-height: 20vh;
     padding: 1vh 1.5vw;
-    font-size: 1.6vw;
+    font-size: 1.7vw;
     border-radius: 1.2rem;
   }
 
   .projectTitle {
-    font-size: 2.5vw;
+    font-size: 1.9vw;
   }
 
   .projectDescription {
-    font-size: 3.2vw;
+    font-size: 3vw;
   }
 
   .projectTech {
-    font-size: 1.4vw;
+    font-size: 1.2vw;
   }
 
   .navButton {
-    font-size: 3.5vw;
-    left: 25%;
+    
+    left: 22%;
+    z-index: 10;
   }
 
   .badgesContainer {
     right: 0%;
     gap: 8px;
+  }
+
+  .ballchainBg {
+    transform: translateX(-10%) translateY(0);
   }
 
   .upButton {
@@ -401,10 +417,7 @@
 
 /* Tablet Portrait (576px - 767px) */
 @media (max-width: 767px) and (min-width: 576px) {
-  .contentContainer {
-    flex-direction: column;
-    padding: 1vh 2vw;
-  }
+
 
   .projectInfoPanel {
     position: relative;
@@ -485,6 +498,10 @@
     bottom: auto;
     margin: 0 2vw;
   }
+
+  .ballchainBg {
+    transform: translateX(-3.8%) translateY(0);
+  }
 }
 
 /* Desktop Large (1440px+) - Cap maximum sizes */
@@ -495,6 +512,7 @@
     min-height: 30%; /* 40vh at 1440px height */
     padding: 43.2px 28.8px; /* 3vh 2vw at 1440px */
     border-radius: 64px; /* 4rem fixed */
+    
   }
 
   .projectImagesContainer {
@@ -525,7 +543,10 @@
 
   .navButton {
     font-size: 36px; /* 2.5vw at 1440px */
+    z-index: 10;
+  }
+
+  .ballchainBg {
+    transform: translateX(-3.8%) translateY(0);
   }
 }
-
-

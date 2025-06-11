@@ -33,12 +33,12 @@ const badgePositions = {
   ],
   // Tablet Landscape 768px-1023px
   tabletLandscape: [
-    { translateX: 50, top: 0 },
-    { translateX: 10, top: -6 },
-    { translateX: -10, top: 10 },
-    { translateX: -20, top: 30 },
-    { translateX: -50, top: 50 },
-    { translateX: -90, top: 70 },
+    { translateX: 50, top: -30},
+    { translateX: 10, top: 0 },
+    { translateX: -10, top: 20 },
+    { translateX: -20, top: 40 },
+    { translateX: -50, top: 80 },
+    { translateX: -90, top: 110 },
   ],
   // Tablet Portrait 576px-767px
   tabletPortrait: [

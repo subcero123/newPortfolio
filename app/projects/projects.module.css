@@ -112,16 +112,16 @@
 
 @keyframes badgeTransition {
   0% {
-    transform: translateY(-20px) scale(0.9);
+    transform: translateY(-20px) ;
   }
   30% {
-    transform: translateY(-10px) scale(0.95);
+    transform: translateY(-10px) ;
   }
   70% {
-    transform: translateY(5px) scale(1.02);
+    transform: translateY(5px) ;
   }
   100% {
-    transform: translateY(0px) scale(1);
+    transform: translateY(0px) ;
   }
 }
 
@@ -136,25 +136,25 @@
 
 @keyframes badgeSlideIn {
   0% {
-    transform: translateY(-80px) rotate(var(--badge-rotation, 0deg)) scale(0.7);
+    transform: translateY(-80px) ;
   }
   50% {
-    transform: translateY(-20px) rotate(var(--badge-rotation, 0deg)) scale(0.9);
+    transform: translateY(-20px) ;
   }
   100% {
-    transform: translateY(0) rotate(var(--badge-rotation, 0deg)) scale(1);
+    transform: translateY(0) ;
   }
 }
 
 @keyframes badgeSlideOut {
   0% {
-    transform: translateY(0) rotate(var(--badge-rotation, 0deg)) scale(1);
+    transform: translateY(0) ;
   }
   50% {
-    transform: translateY(10px) rotate(var(--badge-rotation, 0deg)) scale(0.95);
+    transform: translateY(10px) ;
   }
   100% {
-    transform: translateY(50px) rotate(var(--badge-rotation, 0deg)) scale(0.8);
+    transform: translateY(50px) ;
   }
 }
 
@@ -171,7 +171,7 @@
     transform: translateY(calc(var(--start-position, 0px) * 0.5 + var(--end-position, 0px) * 0.5)) rotate(calc(var(--start-rotation, 0deg) * 0.5 + var(--end-rotation, 0deg) * 0.5)) scale(1.05);
   }
   100% {
-    transform: translateY(var(--end-position, 0px)) rotate(var(--end-rotation, 0deg)) scale(var(--end-scale, 1));
+    transform: translateY(var(--end-position, 0px)) ;
   }
 }
 

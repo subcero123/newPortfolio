@@ -173,7 +173,6 @@ export default function ProjectsPage() {
         {/* dlc_ballchain_bg.png delante del repeating pattern pero detrás de las badges */}
         <div
           className={`${styles.bgImage} ${styles.ballchainBg}`}
-          style={{ backgroundImage: "url(/dlc_ballchain_bg.png)" }}
         />
         {/* header-bg.webp siempre encima */}
         <div className={styles.headerBgContainer}>

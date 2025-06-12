@@ -45,7 +45,7 @@
   .badge {
     padding: 3rem 2.5rem;
     border-radius: 3.5rem;
-    max-width: 300px;
+    max-width: 250px;
     font-size: 1.6rem;
     -webkit-mask-image: radial-gradient(circle at 1.4rem center, transparent 0.45rem, black 0.45rem);
     mask-image: radial-gradient(circle at 1.4rem center, transparent 0.45rem, black 0.45rem);

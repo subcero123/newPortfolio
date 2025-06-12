@@ -16,8 +16,8 @@ const badgePositions = {
   // Desktop 1440px+
   desktop: [
     { translateX: 70, top: 0 },
-    { translateX: 15, top: -10 },
-    { translateX: -15, top: 15 },
+    { translateX: 20, top: -10 },
+    { translateX: -5, top: 15 },
     { translateX: -30, top: 50 },
     { translateX: -80, top: 80 },
     { translateX: -140, top: 110 },
@@ -28,17 +28,17 @@ const badgePositions = {
     { translateX: 12, top: -8 },
     { translateX: -12, top: 12 },
     { translateX: -25, top: 40 },
-    { translateX: -65, top: 65 },
+    { translateX: -95, top: 65 },
     { translateX: -115, top: 90 },
   ],
   // Tablet Landscape 768px-1023px
   tabletLandscape: [
-    { translateX: 50, top: -30},
+    { translateX: 30, top: -30},
     { translateX: 10, top: 0 },
     { translateX: -10, top: 20 },
-    { translateX: -20, top: 40 },
-    { translateX: -50, top: 80 },
-    { translateX: -90, top: 110 },
+    { translateX: -50, top: 40 },
+    { translateX: -80, top: 80 },
+    { translateX: -120, top: 110 },
   ],
   // Tablet Portrait 576px-767px
   tabletPortrait: [
@@ -130,6 +130,12 @@ const BadgeTag: React.FC<BadgeTagProps> = ({
       if (targetSheet) {
         const rotateStr = `rotate(${rotation}deg)`;
         const translateStr = `translateX(${pos.translateX}px)`;
+        
+        // Scale responsivo según viewport
+        const windowWidth = window.innerWidth;
+        let finalScale = 1.3; // Desktop Large (1440px+)
+        if (windowWidth <= 575) finalScale = 1.1; // Mobile
+        else if (windowWidth <= 1439) finalScale = 1.2; // Tablet y Laptop
 
         const keyframes = `
           @keyframes ${uniqueAnimName} {
@@ -140,7 +146,7 @@ const BadgeTag: React.FC<BadgeTagProps> = ({
               transform: ${rotateStr} ${translateStr} scale(1.34);
             }
             100% {
-              transform: ${rotateStr} ${translateStr} scale(1.3);
+              transform: ${rotateStr} ${translateStr} scale(${finalScale});
             }
           }
         `;

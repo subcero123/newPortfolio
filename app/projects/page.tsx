@@ -191,43 +191,62 @@ export default function ProjectsPage() {
         <div className="bg-cover bg-center w-full z-0">
           <Header onMenuClick={handleToggleExpand} />
         </div>
-        {/* og-image como fondo fill y centrado */}
-        <div
-          className={`${styles.bgImage} ${styles.primaryBg}`}
-          style={{ backgroundImage: "url(/og-image.png)" }}
-        />
-        {/* Filtro verde con opacidad */}
-        <div
-          className={styles.bgImage}
-          style={{
-            background:
-              "linear-gradient(-135deg, rgba(8,204,8,0.0) 0%, rgba(8,204,8,0.3) 70%)",
-            zIndex: 1,
-          }}
-        />
-        {/* repeating_pattern encima de og-image, pero debajo del contenido */}
-        <div
-          className={`${styles.bgImage} ${styles.patternBg}`}
-          style={{ backgroundImage: "url(/repeating_pattern.png)" }}
-        />
-        {/* dlc_ballchain_bg.png delante del repeating pattern pero detrás de las badges */}
-        <div className={`${styles.bgImage} ${styles.ballchainBg}`} />
-        {/* header-bg.webp siempre encima */}
-        <div className={styles.headerBgContainer}>
-          <Image
-            src="/header-bg.webp"
-            alt="Imagen de encabezado"
-            width={1920}
-            height={200}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            priority
-          />
-        </div>
+        {/* Elementos de fondo solo para desktop */}
+        {!isMobile && (
+          <>
+            {/* og-image como fondo fill y centrado */}
+            <div
+              className={`${styles.bgImage} ${styles.primaryBg}`}
+              style={{ backgroundImage: "url(/og-image.png)" }}
+            />
+            {/* Filtro verde con opacidad */}
+            <div
+              className={styles.bgImage}
+              style={{
+                background:
+                  "linear-gradient(-135deg, rgba(8,204,8,0.0) 0%, rgba(8,204,8,0.3) 70%)",
+                zIndex: 1,
+              }}
+            />
+            {/* repeating_pattern encima de og-image, pero debajo del contenido */}
+            <div
+              className={`${styles.bgImage} ${styles.patternBg}`}
+              style={{ backgroundImage: "url(/repeating_pattern.png)" }}
+            />
+            {/* dlc_ballchain_bg.png delante del repeating pattern pero detrás de las badges */}
+            <div className={`${styles.bgImage} ${styles.ballchainBg}`} />
+          </>
+        )}
+        {/* header-bg.webp siempre encima para desktop */}
+        {!isMobile && (
+          <div className={styles.headerBgContainer}>
+            <Image
+              src="/header-bg.webp"
+              alt="Imagen de encabezado"
+              width={1920}
+              height={200}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              priority
+            />
+          </div>
+        )}
         {/* Contenido del main */}
         {isMobile ? (
-          // Contenedor para móviles - Mensaje de experiencia optimizada
-          <div className={styles.mobileContainer}>
-            <div className={styles.mobileContent}>
+          // Contenedor para móviles - Solo header-bg y contenido
+          <>
+            {/* header-bg.webp para móvil */}
+            <div className={styles.headerBgContainer}>
+              <Image
+                src="/header-bg.webp"
+                alt="Imagen de encabezado"
+                width={1920}
+                height={200}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                priority
+              />
+            </div>
+            <div className={styles.mobileContainer}>
+              <div className={styles.mobileContent}>
               {/* Header del proyecto móvil */}
               <div className={styles.mobileHeader}>
                 <h2 className={styles.mobileTitle}>
@@ -307,6 +326,7 @@ export default function ProjectsPage() {
               </div>
             </div>
           </div>
+          </>
         ) : (
           <div className={styles.contentContainer}>
             {/* Flecha arriba */}

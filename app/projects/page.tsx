@@ -17,8 +17,35 @@ export default function ProjectsPage() {
   const [pendingBadge, setPendingBadge] = useState<number | null>(null);
   const [animationTrigger, setAnimationTrigger] = useState(0);
   const [isScrollAnimating, setIsScrollAnimating] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [previousPositions, setPreviousPositions] = useState<{ [key: string]: number }>({});
+  const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
+    null
+  );
+  const [previousPositions, setPreviousPositions] = useState<{
+    [key: string]: number;
+  }>({});
+  // Estado para detectar móvil
+  const [isMobile, setIsMobile] = useState(false);
+  // Estado para animaciones móviles
+  const [isMobileAnimating, setIsMobileAnimating] = useState(false);
+
+  // Hook para detectar dispositivos móviles
+  useEffect(() => {
+    const checkMobile = () => {
+      const userAgent =
+        navigator.userAgent || navigator.vendor || (window as any).opera;
+      const mobileRegex =
+        /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+      const isMobileDevice = mobileRegex.test(userAgent.toLowerCase());
+      const isSmallScreen = window.innerWidth <= 576; // Solo móviles muy pequeños
+
+      setIsMobile(isMobileDevice && isSmallScreen); // Ambas condiciones deben cumplirse
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const projects = [
     {
@@ -129,6 +156,19 @@ export default function ProjectsPage() {
     }
   }, [badgeOffset, isScrollAnimating, badges, visibleCount]);
 
+  const handleMobileProjectChange = (newIndex: number) => {
+    if (newIndex === selectedBadge) return;
+    
+    setIsMobileAnimating(true);
+    
+    setTimeout(() => {
+      setSelectedBadge(newIndex);
+      setTimeout(() => {
+        setIsMobileAnimating(false);
+      }, 50);
+    }, 300);
+  };
+
   const handleToggleExpand = (id: number | null) => {
     setExpandedId(expandedId === id ? null : id);
   };
@@ -171,9 +211,7 @@ export default function ProjectsPage() {
           style={{ backgroundImage: "url(/repeating_pattern.png)" }}
         />
         {/* dlc_ballchain_bg.png delante del repeating pattern pero detrás de las badges */}
-        <div
-          className={`${styles.bgImage} ${styles.ballchainBg}`}
-        />
+        <div className={`${styles.bgImage} ${styles.ballchainBg}`} />
         {/* header-bg.webp siempre encima */}
         <div className={styles.headerBgContainer}>
           <Image
@@ -186,25 +224,111 @@ export default function ProjectsPage() {
           />
         </div>
         {/* Contenido del main */}
-        <div className={styles.contentContainer}>
-          {/* Flecha arriba */}
+        {isMobile ? (
+          // Contenedor para móviles - Mensaje de experiencia optimizada
+          <div className={styles.mobileContainer}>
+            <div className={styles.mobileContent}>
+              {/* Header del proyecto móvil */}
+              <div className={styles.mobileHeader}>
+                <h2 className={styles.mobileTitle}>
+                  {projects[selectedBadge || 0].title}
+                </h2>
+                <div className={styles.mobileProjectCounter}>
+                  {(selectedBadge || 0) + 1} / {projects.length}
+                </div>
+              </div>
+
+              {/* Contenedor de imagen del proyecto */}
+              <div className={styles.mobileImageContainer}>
+                <Image
+                  src={projects[selectedBadge || 0].imgs[0]}
+                  width={400}
+                  height={300}
+                  alt={`${projects[selectedBadge || 0].title} preview`}
+                  className={`${styles.mobileProjectImage} ${
+                    isMobileAnimating ? styles.mobileImageFadeOut : styles.mobileImageFadeIn
+                  }`}
+                />
+              </div>
+
+              {/* Información del proyecto */}
+              <div className={styles.mobileProjectInfo}>
+                <div className={`${styles.mobileTechnologies} ${
+                  isMobileAnimating ? styles.mobileTechFadeOut : styles.mobileTechFadeIn
+                }`}>
+                  <h3>Technologies:</h3>
+                  <p>{projects[selectedBadge || 0].technologies.join(", ")}</p>
+                </div>
+                
+                <div className={`${styles.mobileDescription} ${
+                  isMobileAnimating ? styles.mobileDescFadeOut : styles.mobileDescFadeIn
+                }`}>
+                  <h3>Description:</h3>
+                  <p>{projects[selectedBadge || 0].description}</p>
+                </div>
+              </div>
+
+              {/* Controles de navegación móvil */}
+              <div className={styles.mobileNavigation}>
+                <button
+                  onClick={() => {
+                    const newIndex = selectedBadge === 0 ? projects.length - 1 : (selectedBadge || 0) - 1;
+                    handleMobileProjectChange(newIndex);
+                  }}
+                  className={styles.mobileNavButton}
+                  aria-label="Proyecto anterior"
+                >
+                  ← 
+                </button>
+                
+                <div className={styles.mobileDots}>
+                  {projects.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleMobileProjectChange(index)}
+                      className={`${styles.mobileDot} ${
+                        (selectedBadge || 0) === index ? styles.activeDot : ''
+                      }`}
+                      aria-label={`Ir al proyecto ${index + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => {
+                    const newIndex = (selectedBadge || 0) === projects.length - 1 ? 0 : (selectedBadge || 0) + 1;
+                    handleMobileProjectChange(newIndex);
+                  }}
+                  className={styles.mobileNavButton}
+                  aria-label="Siguiente proyecto"
+                >
+                   →
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.contentContainer}>
+            {/* Flecha arriba */}
             <button
               onClick={() => {
                 if (isScrollAnimating) return;
                 setIsScrollAnimating(true);
-                setScrollDirection('up');
+                setScrollDirection("up");
                 // Capturar posiciones ANTES de cambiar el offset
                 const currentPositions: { [key: string]: number } = {};
-                Array.from({ length: visibleCount }).forEach((_, visibleIndex) => {
-                  const index = (badgeOffset + visibleIndex) % badges.length;
-                  const badge = badges[index];
-                  const badgeKey = `${badge.text}-${index}`;
-                  currentPositions[badgeKey] = visibleIndex;
-                });
+                Array.from({ length: visibleCount }).forEach(
+                  (_, visibleIndex) => {
+                    const index = (badgeOffset + visibleIndex) % badges.length;
+                    const badge = badges[index];
+                    const badgeKey = `${badge.text}-${index}`;
+                    currentPositions[badgeKey] = visibleIndex;
+                  }
+                );
                 setPreviousPositions(currentPositions);
-                
+
                 setBadgeOffset((prev) => (prev + 1) % badges.length);
-                setAnimationTrigger(prev => prev + 1);
+                setAnimationTrigger((prev) => prev + 1);
                 setTimeout(() => {
                   setIsScrollAnimating(false);
                   setScrollDirection(null);
@@ -219,179 +343,203 @@ export default function ProjectsPage() {
                 alt="Flecha arriba"
                 width={100}
                 height={50}
-                style={{ filter: "invert(1)", transform: "rotateX(180deg) rotate(75deg)" }}
+                style={{
+                  filter: "invert(1)",
+                  transform: "rotateX(180deg) rotate(75deg)",
+                }}
               />
             </button>
 
-          {/* Semi-círculo de chapas centrado */}
-          <div className={`${styles.badgesContainer} ${isScrollAnimating ? styles.badgesScrolling : ''}`} key={`container-${animationTrigger}`}>
-            {Array.from({ length: visibleCount }).map((_, visibleIndex) => {
-              const index = (badgeOffset + visibleIndex) % badges.length;
-              const badge = badges[index];
-              const rotation = rotations[visibleIndex];
-              const isClickable = rotation !== -15 && rotation !== 10;
-              
-              // Track position changes for animation
-              const badgeKey = `${badge.text}-${index}`;
-              const currentPosition = visibleIndex;
-              const previousPosition = previousPositions[badgeKey];
-
-              // Create wrapper div for animation classes
-              let animationClass = '';
-              let wrapperStyle = {};
-              
-              if (isScrollAnimating && scrollDirection) {
-                if (scrollDirection === 'up' && visibleIndex === 0) {
-                  animationClass = styles.badgeEntering;
-                } else if (scrollDirection === 'down' && visibleIndex === visibleCount - 1) {
-                  animationClass = styles.badgeEntering;
-                } else if (previousPosition !== undefined && previousPosition !== currentPosition) {
-                  // Only animate middle elements (skip first and last)
-                  if (visibleIndex !== 0 && visibleIndex !== visibleCount - 1) {
-                    animationClass = styles.badgeTransitioning;
-                    // Calculate the exact position difference for smooth animation
-                    const positionDifference = (previousPosition - currentPosition) * 60; // 60px gap between badges
-                    wrapperStyle = {
-                      '--start-position': `${positionDifference}px`,
-                      '--end-position': '0px',
-                      '--start-rotation': `${rotations[previousPosition] || 0}deg`,
-                      '--end-rotation': `${rotation}deg`,
-                    };
-                  }
-                }
-              }
-
-              return (
-                <div 
-                  key={`wrapper-${badge.text}-${visibleIndex}-${animationTrigger}`} 
-                  className={animationClass}
-                  style={wrapperStyle}
-                >
-                  <BadgeTag
-                    key={`${badge.text}-${visibleIndex}-${animationTrigger}`}
-                    text={badge.text}
-                    rotation={rotation}
-                    positionIndex={visibleIndex}
-                    isSelected={selectedBadge === index}
-                    onClick={
-                      isClickable ? () => handleBadgeClick(index) : undefined
-                    }
-                  />
-                </div>
-              );
-            })}
-          </div>
-          {/* Flecha abajo */}
-          <button
-            onClick={() => {
-              if (isScrollAnimating) return;
-              setIsScrollAnimating(true);
-              setScrollDirection('down');
-              // Capturar posiciones ANTES de cambiar el offset
-              const currentPositions: { [key: string]: number } = {};
-              Array.from({ length: visibleCount }).forEach((_, visibleIndex) => {
+            {/* Semi-círculo de chapas centrado */}
+            <div
+              className={`${styles.badgesContainer} ${
+                isScrollAnimating ? styles.badgesScrolling : ""
+              }`}
+              key={`container-${animationTrigger}`}
+            >
+              {Array.from({ length: visibleCount }).map((_, visibleIndex) => {
                 const index = (badgeOffset + visibleIndex) % badges.length;
                 const badge = badges[index];
+                const rotation = rotations[visibleIndex];
+                const isClickable = rotation !== -15 && rotation !== 10;
+
+                // Track position changes for animation
                 const badgeKey = `${badge.text}-${index}`;
-                currentPositions[badgeKey] = visibleIndex;
-              });
-              setPreviousPositions(currentPositions);
-              
-              setBadgeOffset((prev) => (prev - 1 + badges.length) % badges.length);
-              setAnimationTrigger(prev => prev + 1);
-              setTimeout(() => {
-                setIsScrollAnimating(false);
-                setScrollDirection(null);
-              }, 400);
-            }}
-            className={`${styles.navButton} ${styles.downButton}`}
-            aria-label="Ver siguientes"
-            disabled={isScrollAnimating}
-          >
-            <Image
-              src="/arrow.svg"
-              alt="Flecha abajo"
-              width={100}
-              height={50}
-              style={{ filter: "invert(1)", rotate: "90deg" }}
-              
-            />
-          </button>
+                const currentPosition = visibleIndex;
+                const previousPosition = previousPositions[badgeKey];
 
-          {/* Contenedor para la información del proyecto */}
-          <div className={styles.projectInfoPanel}>
-            {selectedBadge !== null ? (
-              <div
-                className={`${styles.projectContent} ${
-                  isAnimating ? styles.fadeOut : styles.fadeIn
-                }`}
-              >
-                <h2 className={styles.projectTitle}>TITLE</h2>
-                <hr className={styles.mediumHR} />
-                <p className={styles.projectDescription}>
-                  {projects[selectedBadge].title}
-                </p>
-                <hr className={styles.mediumHR} />
-                <hr className={styles.bigHR} />
-                <h2 className={styles.projectTitle}>Technologies</h2>
-                <hr className={styles.mediumHR} />
-                <p className={styles.projectDescription}>
-                  {projects[selectedBadge].technologies.join(", ")}
-                </p>
-                <hr className={styles.mediumHR} />
-                <hr className={styles.bigHR} />
-              </div>
-            ) : (
-              <div
-                className={`${styles.projectContent} ${
-                  isAnimating ? styles.fadeOut : styles.fadeIn
-                }`}
-              >
-                <h2 className={styles.projectTitle}>Select a project</h2>
-                <hr className={styles.mediumHR} />
-                <p className={styles.projectDescription}>
-                  Click on a badge to view project details
-                </p>
-                <hr className={styles.mediumHR} />
-                <hr className={styles.bigHR} />
-              </div>
-            )}
-          </div>
+                // Create wrapper div for animation classes
+                let animationClass = "";
+                let wrapperStyle = {};
 
-          {/* Contenedor para las imagenes del proyecto */}
-          <div className={styles.projectImagesContainer}>
-            {selectedBadge !== null && (
-              <div className={styles.projectImages}>
-                {projects[selectedBadge].imgs.map((img, index) => (
-                  <Image
-                    key={index}
-                    src={img}
-                    width={768}
-                    height={576}
-                    alt={`Project Image ${index + 1}`}
-                    className={`${styles.projectImage} ${
-                      styles.projectImageAnimated
-                    } ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
-                    loading="lazy"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
+                if (isScrollAnimating && scrollDirection) {
+                  if (scrollDirection === "up" && visibleIndex === 0) {
+                    animationClass = styles.badgeEntering;
+                  } else if (
+                    scrollDirection === "down" &&
+                    visibleIndex === visibleCount - 1
+                  ) {
+                    animationClass = styles.badgeEntering;
+                  } else if (
+                    previousPosition !== undefined &&
+                    previousPosition !== currentPosition
+                  ) {
+                    // Only animate middle elements (skip first and last)
+                    if (
+                      visibleIndex !== 0 &&
+                      visibleIndex !== visibleCount - 1
+                    ) {
+                      animationClass = styles.badgeTransitioning;
+                      // Calculate the exact position difference for smooth animation
+                      const positionDifference =
+                        (previousPosition - currentPosition) * 60; // 60px gap between badges
+                      wrapperStyle = {
+                        "--start-position": `${positionDifference}px`,
+                        "--end-position": "0px",
+                        "--start-rotation": `${
+                          rotations[previousPosition] || 0
+                        }deg`,
+                        "--end-rotation": `${rotation}deg`,
+                      };
+                    }
+                  }
+                }
 
-          {/* Contenedor para la descripción del proyecto */}
-          <div className={styles.projectDescriptionContainer}>
-            {selectedBadge !== null && (
-              <div
-                className={`${styles.projectDescriptionText} ${
-                  styles.projectDescriptionAnimated
-                } ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
-              >
-                <p>{projects[selectedBadge].description}</p>
-              </div>
-            )}
+                return (
+                  <div
+                    key={`wrapper-${badge.text}-${visibleIndex}-${animationTrigger}`}
+                    className={animationClass}
+                    style={wrapperStyle}
+                  >
+                    <BadgeTag
+                      key={`${badge.text}-${visibleIndex}-${animationTrigger}`}
+                      text={badge.text}
+                      rotation={rotation}
+                      positionIndex={visibleIndex}
+                      isSelected={selectedBadge === index}
+                      onClick={
+                        isClickable ? () => handleBadgeClick(index) : undefined
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            {/* Flecha abajo */}
+            <button
+              onClick={() => {
+                if (isScrollAnimating) return;
+                setIsScrollAnimating(true);
+                setScrollDirection("down");
+                // Capturar posiciones ANTES de cambiar el offset
+                const currentPositions: { [key: string]: number } = {};
+                Array.from({ length: visibleCount }).forEach(
+                  (_, visibleIndex) => {
+                    const index = (badgeOffset + visibleIndex) % badges.length;
+                    const badge = badges[index];
+                    const badgeKey = `${badge.text}-${index}`;
+                    currentPositions[badgeKey] = visibleIndex;
+                  }
+                );
+                setPreviousPositions(currentPositions);
+
+                setBadgeOffset(
+                  (prev) => (prev - 1 + badges.length) % badges.length
+                );
+                setAnimationTrigger((prev) => prev + 1);
+                setTimeout(() => {
+                  setIsScrollAnimating(false);
+                  setScrollDirection(null);
+                }, 400);
+              }}
+              className={`${styles.navButton} ${styles.downButton}`}
+              aria-label="Ver siguientes"
+              disabled={isScrollAnimating}
+            >
+              <Image
+                src="/arrow.svg"
+                alt="Flecha abajo"
+                width={100}
+                height={50}
+                style={{ filter: "invert(1)", rotate: "90deg" }}
+              />
+            </button>
+
+            {/* Contenedor para la información del proyecto */}
+            <div className={styles.projectInfoPanel}>
+              {selectedBadge !== null ? (
+                <div
+                  className={`${styles.projectContent} ${
+                    isAnimating ? styles.fadeOut : styles.fadeIn
+                  }`}
+                >
+                  <h2 className={styles.projectTitle}>TITLE</h2>
+                  <hr className={styles.mediumHR} />
+                  <p className={styles.projectDescription}>
+                    {projects[selectedBadge].title}
+                  </p>
+                  <hr className={styles.mediumHR} />
+                  <hr className={styles.bigHR} />
+                  <h2 className={styles.projectTitle}>Technologies</h2>
+                  <hr className={styles.mediumHR} />
+                  <p className={styles.projectDescription}>
+                    {projects[selectedBadge].technologies.join(", ")}
+                  </p>
+                  <hr className={styles.mediumHR} />
+                  <hr className={styles.bigHR} />
+                </div>
+              ) : (
+                <div
+                  className={`${styles.projectContent} ${
+                    isAnimating ? styles.fadeOut : styles.fadeIn
+                  }`}
+                >
+                  <h2 className={styles.projectTitle}>Select a project</h2>
+                  <hr className={styles.mediumHR} />
+                  <p className={styles.projectDescription}>
+                    Click on a badge to view project details
+                  </p>
+                  <hr className={styles.mediumHR} />
+                  <hr className={styles.bigHR} />
+                </div>
+              )}
+            </div>
+
+            {/* Contenedor para las imagenes del proyecto */}
+            <div className={styles.projectImagesContainer}>
+              {selectedBadge !== null && (
+                <div className={styles.projectImages}>
+                  {projects[selectedBadge].imgs.map((img, index) => (
+                    <Image
+                      key={index}
+                      src={img}
+                      width={768}
+                      height={576}
+                      alt={`Project Image ${index + 1}`}
+                      className={`${styles.projectImage} ${
+                        styles.projectImageAnimated
+                      } ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Contenedor para la descripción del proyecto */}
+            <div className={styles.projectDescriptionContainer}>
+              {selectedBadge !== null && (
+                <div
+                  className={`${styles.projectDescriptionText} ${
+                    styles.projectDescriptionAnimated
+                  } ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
+                >
+                  <p>{projects[selectedBadge].description}</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </main>
       <footer>
         <div className={styles.footer}>

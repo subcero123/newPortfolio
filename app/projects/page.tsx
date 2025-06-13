@@ -3,7 +3,7 @@
 import type React from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import BadgeTag from "@/components/BadgeTag";
 import styles from "./projects.module.css";
 
@@ -104,10 +104,12 @@ export default function ProjectsPage() {
     },
   ];
 
-  // Crear los badges a partir de los títulos de los proyectos
-  const badges = projects.map((project) => ({
-    text: project.title.toUpperCase(),
-  }));
+  // Crear los badges a partir de los títulos de los proyectos (memoized)
+  const badges = useMemo(() => 
+    projects.map((project) => ({
+      text: project.title.toUpperCase(),
+    })), []
+  );
 
   // Mapeo de hashtags a índices de proyectos
   const hashtagToProject: { [key: string]: number } = {
@@ -182,7 +184,7 @@ export default function ProjectsPage() {
     setTimeout(() => {
       setIsAnimating(false);
       setPendingBadge(null);
-    }, 30);
+    }, 250);
   };
 
   return (

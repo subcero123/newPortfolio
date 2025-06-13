@@ -6,6 +6,8 @@
   max-width: 300px;
   font-weight: bolder;
   font-size: 2rem;
+  /* Font caricaturesca */
+  font-family: 'Comic Sans MS', 'Comic Sans', monospace;
   position: relative;
   cursor: pointer;
   transform-origin: left top;
@@ -14,7 +16,7 @@
   mask-composite: exclude;
   -webkit-mask-composite: destination-out;
   line-height: 1;
-  text-shadow: 2px 2px 2px #222;
+  text-shadow: 0px 2px 2px #222;
 }
 
 .badge.selected {
@@ -38,6 +40,7 @@
   border-radius: 50%;
   display: inline-block;
   pointer-events: none;
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 1);
 }
 
 /* Laptop Normal (1024px - 1439px) */

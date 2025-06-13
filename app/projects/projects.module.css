@@ -179,12 +179,13 @@
   rotate: 4deg 0 0;
   background-color: black;
   padding: 1.5vh 2vw;
+  font-family: monospace;
   font-size: 1.2vw;
   font-weight: bolder;
   border-radius: 2rem;
   z-index: 5;
-  max-width: 35%;
-  min-width: 35%;
+  max-width: 40%;
+  min-width: 40%;
   min-height: 30vh;
   max-height: 30vh;
 }
@@ -193,12 +194,15 @@
   font-size: 2vw;
   font-weight: bold;
   color: #6cff0d;
+  /* fuente tipo grupo */
+  font-family: "Press Start 2P", monospace;
 }
 
 .projectDescription {
   font-size: 2.5vw;
   font-weight: bolder;
   color: #ddd;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .mediumHR {
@@ -297,12 +301,12 @@
 
   .projectDescriptionContainer {
     top: 54%;
-    right: 3%;
-    max-width: 40%;
-    min-width: 40%;
-    min-height: 28vh;
-    max-height: 28vh;
-    padding: 1.2vh 1.8vw;
+    right: 1%;
+    max-width: 45%;
+    min-width: 45%;
+    min-height: 30vh;
+    max-height: 30vh;
+    padding: 1.5rem 1.8vw;
     font-size: 1.7vw;
     border-radius: 1.5rem;
   }
@@ -362,13 +366,13 @@
   }
 
   .projectDescriptionContainer {
-    top: 55%;
+    top: 58%;
     right: 1%;
-    max-width: 42%;
-    min-width: 42%;
-    min-height: 20vh;
-    max-height: 20vh;
-    padding: 1vh 1.5vw;
+    max-width: 45%;
+    min-width: 45%;
+    min-height: 22vh;
+    max-height: 22vh;
+    padding: 1.2rem 1.5vw;
     font-size: 1.7vw;
     border-radius: 1.2rem;
   }
@@ -414,25 +418,21 @@
 
 /* Mobile Layout */
 @media (max-width: 767px) {
-
   .ballchainBg {
     display: none;
   }
 
   .pageContainer {
     background-color: black;
-
   }
 
   .mainContent {
     height: 100%;
     min-height: 0vh !important;
-    
   }
 
   /* Mobile Layout Styles */
   .mobileContainer {
-    
     z-index: 5;
     height: calc(100vh - 16vh); /* Full height minus header */
     width: 100%;
@@ -627,16 +627,16 @@
   }
 
   .projectImagesContainer {
-    width: 40%; /* 40% of 1440px */
+    max-width: 768px; /* 40% of 1440px */
   }
 
   .projectDescriptionContainer {
-    max-width: 554px; /* 35% of 1440px */
-    min-width: 554px;
-    min-height: 30vh; /* 30vh at 1440px height */
-    max-height: 30vh;
-    padding: 21.6px 28.8px; /* 1.5vh 2vw at 1440px */
-    font-size: 1.3rem; /* 1.2vw at 1440px */
+    max-width: 624px; /* 35% of 1440px */
+    min-width: 624px;
+    min-height: 35vh; /* 30vh at 1440px height */
+    max-height: 35vh;
+    padding: 2rem 28.8px; /* 1.5vh 2vw at 1440px */
+    font-size: 1.4rem; /* 1.2vw at 1440px */
     border-radius: 32px; /* 2rem fixed */
   }
 

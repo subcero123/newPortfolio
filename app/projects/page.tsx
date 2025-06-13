@@ -206,7 +206,7 @@ export default function ProjectsPage() {
               className={styles.bgImage}
               style={{
                 background:
-                  "linear-gradient(-135deg, rgba(8,204,8,0.0) 0%, rgba(8,204,8,0.3) 70%)",
+                  "linear-gradient(-135deg, rgba(8,204,8,0.0) 0%, rgba(2, 65, 6, 0.3) 70%)",
                 zIndex: 1,
               }}
             />
@@ -556,6 +556,9 @@ export default function ProjectsPage() {
                     styles.projectDescriptionAnimated
                   } ${isAnimating ? styles.fadeOut : styles.fadeIn}`}
                 >
+                    <h2 className={styles.projectDescription} style={{ textAlign: "center" }}>Description</h2>
+                  <hr className={styles.mediumHR} />
+                  <hr className={styles.bigHR} />
                   <p>{projects[selectedBadge].description}</p>
                 </div>
               )}

@@ -335,6 +335,15 @@
   .ballchainBg {
     background: url("/dlc_ballchain_bg.png") no-repeat 49% 5%;
   }
+
+  .upButton {
+    top: 45%;
+    transform: translateX(20%);
+  }
+
+  .downButton {
+    bottom: 20%;
+  }
 }
 
 /* Tablet Landscape (768px - 1023px) */
@@ -390,7 +399,7 @@
   }
 
   .navButton {
-    left: 19%;
+    left: 15%;
     z-index: 10;
   }
 
@@ -400,11 +409,11 @@
   }
 
   .upButton {
-    top: 40%;
+    top: 45%;
   }
 
   .downButton {
-    bottom: 30%;
+    bottom: 20%;
   }
 
   .ballchainBg {
@@ -653,7 +662,7 @@
   }
 
   .navButton {
-    font-size: 36px; /* 2.5vw at 1440px */
+    left: 30%;
     z-index: 10;
   }
 }

@@ -17,6 +17,7 @@
   -webkit-mask-composite: destination-out;
   line-height: 1;
   text-shadow: 0px 2px 2px #222;
+  overflow: visible;
 }
 
 .badge.selected {
@@ -43,6 +44,18 @@
   box-shadow: 0 0 0.1rem rgba(0, 0, 0, 1);
 }
 
+.bulletHole {
+  position: absolute;
+  right: 1rem;
+  top: 20%;
+  transform: translateY(-50%);
+  width: 4rem;
+  height: 4rem;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 10;
+}
+
 /* Laptop Normal (1024px - 1439px) */
 @media (max-width: 1439px) and (min-width: 1024px) {
   .badge {
@@ -58,6 +71,12 @@
     left: 1rem;
     width: 0.9rem;
     height: 0.9rem;
+  }
+
+  .bulletHole {
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 
@@ -78,6 +97,12 @@
     width: 0.8rem;
     height: 0.8rem;
   }
+
+  .bulletHole {
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 /* Tablet Portrait (576px - 767px) */
@@ -97,6 +122,12 @@
     width: 0.7rem;
     height: 0.7rem;
   }
+
+  .bulletHole {
+    right: -0.2rem;
+    width: 0.9rem;
+    height: 0.9rem;
+  }
 }
 
 /* Mobile Small (hasta 575px) */
@@ -115,5 +146,11 @@
     left: 0.5rem;
     width: 0.6rem;
     height: 0.6rem;
+  }
+
+  .bulletHole {
+    right: -0.1rem;
+    width: 0.7rem;
+    height: 0.7rem;
   }
 }

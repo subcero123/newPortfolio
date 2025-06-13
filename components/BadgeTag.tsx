@@ -175,6 +175,12 @@ const BadgeTag: React.FC<BadgeTagProps> = ({
       {/* Orificio a la izquierda, transparente */}
       <span className={styles.badgeHole} />
       {text}
+      {/* Bullet hole image on the right side */}
+      <img 
+        src="/bullet_hole.png" 
+        alt="bullet hole" 
+        className={styles.bulletHole}
+      />
     </div>
   );
 };

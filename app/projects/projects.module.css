@@ -90,7 +90,14 @@
   font-size: 2.5vw;
   cursor: pointer;
   z-index: 4;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
+
+.navButton:active {
+  transform: translateY(5px);
+  animation: none;
+}
+
 
 .upButton {
   top: 35%;
@@ -630,7 +637,8 @@
   .projectInfoPanel {
     max-width: 518px; /* 30% of 1440px */
     min-width: 518px;
-    min-height: 30%; /* 40vh at 1440px height */
+    min-height: 39%; /* 40vh at 1440px height */
+    max-height: 39%; /* 40vh at 1440px height */
     padding: 43.2px 28.8px; /* 3vh 2vw at 1440px */
     border-radius: 64px; /* 4rem fixed */
   }

@@ -92,8 +92,8 @@ src: url('/fonts/Persona5MenuFontPrototype-Regular.ttf') format('truetype');
 }
 
 .imagen-contorno{
-  width: 700px;
-  height: 700px;
+  width: 800px;
+  height: 800px;
 }
 
 .animated-image {

@@ -179,7 +179,7 @@ export default function Home() {
         </div>
         <div
           className="relative h-[72vh] flex"
-          style={{ maxWidth: "1440px", width: "100%", alignSelf: "center" }}
+          style={{ maxWidth: "1440px", width: "100%", alignSelf: "flex-end" }}
         >
           {!isMobile && (
             <div
@@ -205,6 +205,65 @@ export default function Home() {
                 titleFontSize="4rem"
                 subtitleContainerRotation="15deg"
               />
+              {/* Container CONTACT ME - solo negro */}
+              <div
+                className="absolute flex items-center justify-center bg-black w-full h-full"
+                style={{
+                  zIndex: 1,
+                  clipPath: "polygon(21% 22%, 65% 28%, 62% 43%, 17% 36%)",
+                  transform: "translateX(-45%) translateY(-10%)",
+                }}
+              >
+                <div
+                  className="transform perspective-1000 absolute"
+                  style={{
+                    top: "33%",
+                    left: "43%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <h2
+                    className="text-white font-bold tracking-widest"
+                    style={{
+                      fontFamily: "p5hatty",
+                      fontSize: "4rem",
+                      textShadow: "0 0 20px rgba(230, 0, 18, 0.5)",
+                      transform: "rotate(9deg)",
+                    }}
+                  >
+                    CONTACT
+                  </h2>
+                </div>
+              </div>
+              {/* Subtítulo REACH ME - estructura completa */}
+              <div
+                className="absolute w-full h-full"
+                style={{
+                  zIndex: 10,
+                }}
+              >
+                <div
+                  className="transform perspective-1000 absolute w-full"
+                  style={{
+                    top: "35%",
+                    left: "35%",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <h2
+                    className="text-white font-bold tracking-widest"
+                    style={{
+                      fontFamily: "p5hatty",
+                      fontSize: "2.5rem",
+                      textShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
+                      transform: "rotate(8deg)",
+                      WebkitTextStroke: "1px black",
+                    }}
+                  >
+                    REACH ME
+                  </h2>
+                </div>
+              </div>
               <Image
                 src="/me-2.png"
                 alt="Contorno"
@@ -247,12 +306,12 @@ export default function Home() {
             ></div>
           </div>
         </div>
-        <main className="w-full h-screen relative">
+        <main className="w-full h-screen relative z-10">
           <img
             src={`/projects-bg.webp`}
             alt="Background"
             className="absolute left-0 w-full h-full"
-            style={{ top: "-2%" }}
+            style={{ top: "-6%" }}
           />
           <div
             className="relative flex flex-col justify-center h-full"

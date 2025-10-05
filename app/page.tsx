@@ -7,6 +7,7 @@ import PersonaButton from "../components/PersonaButton";
 import SocialButtons from "../components/SocialButtons";
 import Persona3DContainer from "../components/Persona3DContainer";
 import Persona5Container from "../components/Persona5Container";
+import SimplePersonaContainer from "../components/SimplePersonaContainer";
 import styles from "../styles/RotatedLetter.module.css";
 import p5Styles from "../styles/Persona5Text.module.css";
 import { useEffect, useState } from "react";
@@ -205,65 +206,37 @@ export default function Home() {
                 titleFontSize="4rem"
                 subtitleContainerRotation="15deg"
               />
-              {/* Container CONTACT ME - solo negro */}
-              <div
-                className="absolute flex items-center justify-center bg-black w-full h-full"
-                style={{
-                  zIndex: 1,
-                  clipPath: "polygon(21% 22%, 65% 28%, 62% 43%, 17% 36%)",
-                  transform: "translateX(-45%) translateY(-10%)",
-                }}
-              >
-                <div
-                  className="transform perspective-1000 absolute"
-                  style={{
-                    top: "33%",
-                    left: "43%",
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <h2
-                    className="text-white font-bold tracking-widest"
-                    style={{
-                      fontFamily: "p5hatty",
-                      fontSize: "4rem",
-                      textShadow: "0 0 20px rgba(230, 0, 18, 0.5)",
-                      transform: "rotate(9deg)",
-                    }}
-                  >
-                    CONTACT
-                  </h2>
-                </div>
-              </div>
-              {/* Subtítulo REACH ME - estructura completa */}
-              <div
-                className="absolute w-full h-full"
-                style={{
-                  zIndex: 10,
-                }}
-              >
-                <div
-                  className="transform perspective-1000 absolute w-full"
-                  style={{
-                    top: "35%",
-                    left: "35%",
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  <h2
-                    className="text-white font-bold tracking-widest"
-                    style={{
-                      fontFamily: "p5hatty",
-                      fontSize: "2.5rem",
-                      textShadow: "0 0 20px rgba(0, 0, 0, 0.5)",
-                      transform: "rotate(8deg)",
-                      WebkitTextStroke: "1px black",
-                    }}
-                  >
-                    REACH ME
-                  </h2>
-                </div>
-              </div>
+              {/* Container CONTACT - REACH ME usando componente */}
+              <SimplePersonaContainer title="CONTACT" subtitle="REACH ME" />
+
+              {/* Container PROJECTS - MY PROJECTS */}
+              <SimplePersonaContainer
+                title="PROJECTS"
+                subtitle="MY PROJECTS"
+                transform="translateX(-35%) translateY(1%)"
+                clipPath="polygon(17% 21%, 62% 32%, 62% 39%, 17% 34%)"
+                containerRotation="-15deg"
+                titlePosition={{ top: "33%", left: "41%" }}
+                subtitlePosition={{ top: "47%", left: "39%" }}
+                titleRotation="rotate(9deg)"
+                subtitleRotation="rotate(-6deg)"
+                titleFontSize="4.5rem"
+              />
+
+              {/* Container EXPERIENCE - CAREER PATH */}
+              <SimplePersonaContainer
+                title="EXPERIENCE"
+                subtitle="CAREER PATH"
+                clipPath="polygon(17% 21%, 59% 28%, 57% 38%, 14% 35%)"
+                transform="translateX(-35%) translateY(20%)"
+                containerRotation="-15deg"
+                titlePosition={{ top: "31%", left: "38%" }}
+                subtitlePosition={{ top: "63%", left: "39%" }}
+                titleRotation="rotate(6deg)"
+                subtitleRotation="rotate(-10deg)"
+                titleFontSize="3.2rem"
+              />
+
               <Image
                 src="/me-2.png"
                 alt="Contorno"

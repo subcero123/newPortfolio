@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import PersonaButton from "../components/PersonaButton";
 import SocialButtons from "../components/SocialButtons";
 import Persona3DContainer from "../components/Persona3DContainer";
+import Persona5Container from "../components/Persona5Container";
 import styles from "../styles/RotatedLetter.module.css";
 import p5Styles from "../styles/Persona5Text.module.css";
 import { useEffect, useState } from "react";
@@ -164,7 +165,11 @@ export default function Home() {
           className="absolute inset-0 bg-black opacity-50"
           style={{ zIndex: -1 }}
         ></div>
-        <Header onMenuClick={(id: number | null) => id !== 1 && handleToggleExpand(id)} />
+        <Header
+          onMenuClick={(id: number | null) =>
+            id !== 1 && handleToggleExpand(id)
+          }
+        />
         <div className="w-full h-[10vh] relative overflow-hidden">
           <Image
             src={"/header-bg.webp"}
@@ -184,11 +189,28 @@ export default function Home() {
                 bottom: "-10%",
               }}
             >
+              {/* Primer container Persona 5 */}
+              <Persona5Container title="HECTOR" subtitle="UGARTE RAMIREZ" />
+              {/* Segundo container Persona 5 */}
+              <Persona5Container
+                title="FULLSTACK"
+                subtitle="DEVELOPER"
+                blackClipPath="polygon(31% 31%, 100% 20%, 100% 35%, 24% 37%)"
+                blackTransform="translateX(30%) translateY(15%)"
+                redTransform="translateX(40%) translateY(18%)"
+                containerRotation="15deg"
+                titlePosition={{ top: "31%", left: "73%" }}
+                subtitlePosition={{ top: "85%", left: "130%" }}
+                titleRotation="rotate(-4deg)"
+                titleFontSize="4rem"
+                subtitleContainerRotation="15deg"
+              />
               <Image
                 src="/me-2.png"
                 alt="Contorno"
                 layout="fill"
                 className="animated-image"
+                style={{ zIndex: 2 }}
               />
             </div>
           )}
@@ -196,6 +218,7 @@ export default function Home() {
             className={`relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ${
               isMobile ? "w-full" : "w-2/3 ml-auto"
             }`}
+            style={{ display: "none" }} //POR AHORA
           >
             <h1
               className="mb-2 tracking-widest persona5-text"
@@ -221,36 +244,7 @@ export default function Home() {
             <div
               className={p5Styles.persona5Text}
               style={{ fontFamily: "p5hatty" }}
-            >
-              <div>
-                {"FULLSTACK".split("").map((letter, index) => (
-                  <span
-                    key={index}
-                    className={[
-                      index === 0 || index === 4
-                        ? p5Styles.redText
-                        : p5Styles.whiteText,
-                    ].join(" ")}
-                  >
-                    {letter}
-                  </span>
-                ))}
-              </div>
-              <div>
-                {"DEVELOPER".split("").map((letter, index) => (
-                  <span
-                    key={index}
-                    className={[
-                      index === 0 || index === 6
-                        ? p5Styles.redText
-                        : p5Styles.whiteText,
-                    ].join(" ")}
-                  >
-                    {letter}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ></div>
           </div>
         </div>
         <main className="w-full h-screen relative">

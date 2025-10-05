@@ -185,7 +185,7 @@ export default function Home() {
               }}
             >
               <Image
-                src="/me2.webp"
+                src="/me-2.png"
                 alt="Contorno"
                 layout="fill"
                 className="animated-image"

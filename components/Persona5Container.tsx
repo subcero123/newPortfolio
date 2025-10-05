@@ -1,9 +1,13 @@
 import React from 'react';
+import SpecialLetter from './SpecialLetter';
 
 interface Persona5ContainerProps {
   // Textos
   title: string;
   subtitle: string;
+  
+  // Configuración de letras especiales
+  specialLetterIndices?: number[]; // Índices de las letras que serán especiales en el title
   
   // Configuración de clipPath (opcional)
   blackClipPath?: string;
@@ -39,6 +43,7 @@ interface Persona5ContainerProps {
 const Persona5Container: React.FC<Persona5ContainerProps> = ({
   title,
   subtitle,
+  specialLetterIndices = [],
   blackClipPath = "polygon(0% 39%, 99% 17%, 100% 35%, 0 42%)",
   redClipPath = "polygon(0 37%, 100% 23%, 100% 35%, 0 42%)",
   blackTransform = "translateX(30%) translateY(0%)",
@@ -52,6 +57,22 @@ const Persona5Container: React.FC<Persona5ContainerProps> = ({
   titleFontSize = "5.5rem",
   subtitleFontSize = "3rem",
 }) => {
+  // Función para renderizar el título con letras especiales
+  const renderTitleWithSpecialLetters = () => {
+    return title.split('').map((letter, index) => {
+      if (specialLetterIndices.includes(index)) {
+        return (
+          <SpecialLetter
+            key={index}
+            letter={letter}
+            fontSize={titleFontSize}
+          />
+        );
+      }
+      return letter;
+    });
+  };
+
   return (
     <>
       {/* Div con fondo negro en forma de polígono/rectángulo con punto focal central */}
@@ -70,6 +91,8 @@ const Persona5Container: React.FC<Persona5ContainerProps> = ({
             top: titlePosition.top,
             left: titlePosition.left,
             transform: "translate(-50%, -50%)",
+            width: "max-content",
+            overflow: "visible",
           }}
         >
           <h2
@@ -79,9 +102,13 @@ const Persona5Container: React.FC<Persona5ContainerProps> = ({
               fontSize: titleFontSize,
               textShadow: "0 0 20px rgba(230, 0, 18, 0.5)",
               transform: titleRotation,
+              whiteSpace: "nowrap",
+              overflow: "visible",
+              display: "inline-block",
+              minWidth: "max-content",
             }}
           >
-            {title}
+            {renderTitleWithSpecialLetters()}
           </h2>
         </div>
       </div>

@@ -191,7 +191,11 @@ export default function Home() {
               }}
             >
               {/* Primer container Persona 5 */}
-              <Persona5Container title="HECTOR" subtitle="UGARTE RAMIREZ" />
+              <Persona5Container 
+                title="HECTOR" 
+                subtitle="UGARTE RAMIREZ"
+                specialLetterIndices={[2]} 
+              />
               {/* Segundo container Persona 5 */}
               <Persona5Container
                 title="FULLSTACK"
@@ -200,6 +204,7 @@ export default function Home() {
                 blackTransform="translateX(30%) translateY(15%)"
                 redTransform="translateX(40%) translateY(18%)"
                 containerRotation="15deg"
+                specialLetterIndices={[5]} 
                 titlePosition={{ top: "31%", left: "73%" }}
                 subtitlePosition={{ top: "85%", left: "130%" }}
                 titleRotation="rotate(-4deg)"
@@ -207,7 +212,9 @@ export default function Home() {
                 subtitleContainerRotation="15deg"
               />
               {/* Container CONTACT - REACH ME usando componente */}
-              <SimplePersonaContainer title="CONTACT" subtitle="REACH ME" />
+              <SimplePersonaContainer title="CONTACT" subtitle="REACH ME" 
+              specialLetterIndices={[2]}
+              />
 
               {/* Container PROJECTS - MY PROJECTS */}
               <SimplePersonaContainer
@@ -221,6 +228,7 @@ export default function Home() {
                 titleRotation="rotate(9deg)"
                 subtitleRotation="rotate(-6deg)"
                 titleFontSize="4.5rem"
+                specialLetterIndices={[4]}
               />
 
               {/* Container EXPERIENCE - CAREER PATH */}
@@ -235,6 +243,7 @@ export default function Home() {
                 titleRotation="rotate(6deg)"
                 subtitleRotation="rotate(-10deg)"
                 titleFontSize="3.2rem"
+                specialLetterIndices={[1]}
               />
 
               <Image

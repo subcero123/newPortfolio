@@ -1,9 +1,13 @@
 import React from 'react';
+import SpecialLetter from './SpecialLetter';
 
 interface SimplePersonaContainerProps {
   // Textos
   title: string;
   subtitle: string;
+  
+  // Configuración de letras especiales
+  specialLetterIndices?: number[]; // Índices de las letras que serán especiales en el title
   
   // Configuración del container negro
   clipPath?: string;
@@ -34,6 +38,7 @@ interface SimplePersonaContainerProps {
 const SimplePersonaContainer: React.FC<SimplePersonaContainerProps> = ({
   title,
   subtitle,
+  specialLetterIndices = [],
   clipPath = "polygon(21% 22%, 65% 28%, 62% 43%, 17% 36%)",
   transform = "translateX(-45%) translateY(-10%)",
   containerRotation,
@@ -44,6 +49,22 @@ const SimplePersonaContainer: React.FC<SimplePersonaContainerProps> = ({
   titleFontSize = "4rem",
   subtitleFontSize = "2.5rem",
 }) => {
+  // Función para renderizar el título con letras especiales
+  const renderTitleWithSpecialLetters = () => {
+    return title.split('').map((letter, index) => {
+      if (specialLetterIndices.includes(index)) {
+        return (
+          <SpecialLetter
+            key={index}
+            letter={letter}
+            fontSize={titleFontSize}
+          />
+        );
+      }
+      return letter;
+    });
+  };
+
   return (
     <>
       {/* Container negro principal */}
@@ -62,6 +83,8 @@ const SimplePersonaContainer: React.FC<SimplePersonaContainerProps> = ({
             top: titlePosition.top,
             left: titlePosition.left,
             transform: "translate(-50%, -50%)",
+            width: "max-content",
+            overflow: "visible",
           }}
         >
           <h2
@@ -71,9 +94,13 @@ const SimplePersonaContainer: React.FC<SimplePersonaContainerProps> = ({
               fontSize: titleFontSize,
               textShadow: "0 0 20px rgba(230, 0, 18, 0.5)",
               transform: titleRotation,
+              whiteSpace: "nowrap",
+              overflow: "visible",
+              display: "inline-block",
+              minWidth: "max-content",
             }}
           >
-            {title}
+            {renderTitleWithSpecialLetters()}
           </h2>
         </div>
       </div>
